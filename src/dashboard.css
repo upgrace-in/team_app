@@ -1,0 +1,384 @@
+/* Console */
+
+.positionAbs {
+    position: fixed;
+    top: 10%;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    left: 50%;
+    z-index: 5;
+    transform: translate(-50%, 0);
+}
+
+.hvr{
+    color: blue;
+}
+
+#overlay{
+    z-index: 3;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.394);
+    width: 100%;
+    height: 100vh;
+}
+
+/* Home */
+
+.trd,
+.fth {
+    padding: 10px 10px !important;
+}
+
+.fst>h1,
+.snd>h1 {
+    font-size: 3rem;
+    color: white !important;
+}
+
+.fth>h3,
+.fth>span,
+.trd>h3,
+.trd>span {
+    color: black !important;
+}
+
+/* Account */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,500;0,700;1,300;1,400;1,500&display=swap');
+
+.accCON {
+    border-radius: 10px;
+    background: white;
+    padding: 10px;
+    margin: 10px;
+    height: 120px;
+}
+
+.conw {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.concw {
+    background: white;
+    margin: 10px;
+    text-align: center;
+}
+
+.conw>.fas {
+    font-size: 2.5rem;
+    padding: 15px 20px !important;
+}
+
+.conw>p {
+    margin: 0 !important;
+    line-height: 1.2rem;
+}
+
+.conw>h3 {
+    margin-bottom: 0.5rem;
+}
+
+.wc {
+    border-radius: 15px;
+    cursor: auto;
+    color: white;
+    padding: 40px 0px;
+}
+
+.wc>h3 {
+    color: white;
+}
+
+/* Upload */
+
+.drag-area {
+    background: #6222cc;
+    border: 2px dashed #fff;
+    height: 300px;
+    width: 300px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.drag-area.active {
+    border: 2px solid #fff;
+}
+
+.drag-area .icon {
+    font-size: 100px;
+    color: #fff;
+}
+
+.drag-area header {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.drag-area span {
+    font-size: 25px;
+    font-weight: 500;
+    color: #fff;
+    margin: 10px 0 15px 0;
+}
+
+.drag-area button {
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #fff;
+    color: #5256ad;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drag-area img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Dashboard */
+
+.creditText {
+    padding: 5px;
+    margin-top: 5px;
+    color: #6222cc;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.credits {
+    color: #6222cc;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.creditText>h6 {
+    padding-left: 2px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: black;
+}
+
+.sideCon {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    margin: 5px;
+    padding: 20px;
+}
+
+.sp {
+    padding: 0 10px 0px 10px !important;
+    margin: 5px;
+}
+
+.popup {
+    height: 100%;
+    display: block;
+    overflow: auto;
+    margin-top: 10px !important;
+    align-items: center;
+}
+
+.popDiv {
+    height: 100%;
+    border-radius: 10px;
+    /* padding: 0px 50px 0px 50px !important; */
+    background: rgb(237, 237, 237);
+}
+
+@media (max-width: 767px) {
+    .popDiv {
+        margin: 20px !important;
+        border-radius: 10px;
+        padding: 0px 10px 0px 10px !important;
+        background: rgb(237, 237, 237);
+    }
+
+    .contact-page {
+        padding: 30px 0px 50px 0px !important;
+    }
+
+    .tb {
+        margin: 5px !important;
+    }
+
+    #leadTableCon {
+        padding: 40% 5% 5% 5% !important;
+    }
+}
+
+
+/* .cpa {
+    padding: 30px 0px 50px 0px !important;
+} */
+
+
+.cpa {
+    padding: 0 !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.blocked {
+    opacity: 0.5;
+}
+
+.show {
+    display: block !important;
+}
+
+/* Sidebar */
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    /* height: 100vh; */
+    height: -webkit-fill-available;
+    /* max-height: 100vh; */
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.b-example-divider {
+    flex-shrink: 0;
+    width: 0.2rem;
+    height: 100vh;
+    background-color: rgba(225, 225, 225, 0.1);
+    border: solid rgba(225, 225, 225, 0.1);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.bi {
+    vertical-align: -.125em;
+    pointer-events: none;
+    fill: currentColor;
+}
+
+.dropdown-toggle {
+    outline: 0;
+}
+
+.nav-flush .nav-link {
+    border-radius: 0;
+}
+
+ul,
+ol {
+    margin: 0 0 0.5rem 1.0rem !important;
+}
+
+.btn-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: .25rem .5rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, .65);
+    background-color: transparent;
+    border: 0;
+}
+
+.btn-toggle:hover,
+.btn-toggle:focus {
+    color: rgba(0, 0, 0, .85);
+    background-color: #d2f4ea;
+}
+
+.btn-toggle::before {
+    opacity: 0;
+    width: 1.25em;
+    line-height: 0;
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+}
+
+.btn-toggle[aria-expanded="true"] {
+    color: rgba(0, 0, 0, .85);
+}
+
+.btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+}
+
+.btn-toggle-nav a {
+    display: inline-flex;
+    padding: .1875rem .5rem;
+    margin-top: .125rem;
+    margin-left: 1.25rem;
+    text-decoration: none;
+}
+
+.btn-toggle-nav a:hover,
+.btn-toggle-nav a:focus {
+    background-color: #d2f4ea;
+}
+
+.scrollarea {
+    overflow-y: auto;
+}
+
+.fw-semibold {
+    font-weight: 600;
+}
+
+.lh-tight {
+    line-height: 1.25;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+/* Right content */
+
+body {
+    background-color: #ededed;
+}
+
+.padTop {
+    padding: 1% 2%;
+}
+
+.input2 {
+    width: auto !important;
+    display: inline !important;
+    height: auto !important;
+}
+
+.custom-control>label {
+    padding-left: 10px;
+}
+
+.pd-left {
+    padding: 10px;
+}
+
+.shownCon {
+    padding: 20px !important;
+    background: #fff !important;
+    border-radius: 10px !important;
+}
