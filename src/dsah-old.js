@@ -11,8 +11,6 @@ export default function Dashboard(props) {
 
     const [formState, setformState] = useState('Leads')
 
-    const [formData, setformData] = useState({})
-
     // EXPORTING
     const [leadDatas, setleadDatas] = useState()
 
@@ -64,13 +62,9 @@ export default function Dashboard(props) {
     useEffect(() => {
         props.calculator($('.loanAmount2'), $('.credits'))
         fetchLeads()
-
-        // setformData({ ...formData, fname: 'Hari' })
         setTimeout(() => {
             props.checkUserExists(props.session)
         }, 1000)
-
-
     }, [''])
 
     function submitIt(leadInfo) {
@@ -487,7 +481,7 @@ export default function Dashboard(props) {
                             </section>
                         </div>
                     </div>
-
+ 
                     <div className="padTop">
                         {/* Leads Table */}
                         <div id="leadTableCon" className={formState == 'Leads' ? 'show mx-auto col-md-12' : 'hide'}>

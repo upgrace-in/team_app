@@ -129,6 +129,8 @@ export default function Home(props) {
 
             });
 
+
+            // changed
             renderChart(Object.keys(totalTransactions), Object.values(totalTransactions), ctx)
 
             if (avgLoanAmt !== 0)

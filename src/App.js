@@ -12,8 +12,8 @@ import {
 
 function App() {
 
-  // const ENDPOINT = "https://teamapi.upgrace.in"
-  const ENDPOINT = "http://localhost:4000"
+  const ENDPOINT = "http://143.198.149.232:4000"
+  // const ENDPOINT = "http://localhost:4000"
   let sessionData = JSON.parse(localStorage.getItem('session'))
   if (sessionData != null) {
     // Clear the clicks
