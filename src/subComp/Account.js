@@ -15,8 +15,8 @@ export default function Account(props) {
     }, [])
 
     return (
-        <>
-            <div className={(props.formState === 'Account') && (formSwitch === 0) ? 'show' : 'hide'}>
+        <div className={props.formState === 'Account' ? 'show' : 'hide'}>
+            <div className={formSwitch === 0 ? 'show' : 'hide'}>
                 <h1>My Account</h1>
                 <br />
                 <div className="row">
@@ -54,10 +54,10 @@ export default function Account(props) {
                 <div style={{ padding: 5 + 'px' }}>
                     <Register session={props.session} endpoint={props.endpoint} Msg={Msg} setMsg={setMsg} formSwitch={formSwitch} setformSwitch={setformSwitch} loginUser={loginUser} />
                 </div>
-                <div style={{ marginTop: 10 + 'px' }}>
-                    <button onClick={() => setformSwitch(0)} type="submit" className="col-md-12 thm-btn comment-form__btn">Cancel</button>
+                <div className="row text-center mx-auto mt-2">
+                    <a className='cr' onClick={() => setformSwitch(0)}>Go Back</a>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

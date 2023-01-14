@@ -23,7 +23,6 @@ export default function Upload(props) {
         let inputtxnAdd = $('#inputtxnAdd').val()
         let leadUID = $('#leadUID').val()
         let imgTag = $('#imgTag').val()
-        console.log(leadUID);
         try {
             if ((inputRecAmt !== '') && (inputtxnAdd !== '') && (leadUID !== '0') && (imgTag !== '')) {
                 if (inputRecAmt < props.credits) {
@@ -52,7 +51,7 @@ export default function Upload(props) {
                         })
                         .catch((error) => console.log(error.message));
                 }else{
-                    setMsg("You don't have that much credits !!!")
+                    setMsg("More Credits Are Needed")
                 }
             } else {
                 throw new Error;

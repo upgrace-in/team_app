@@ -293,7 +293,7 @@ export default function Dashboard(props) {
                                                                                         <div className="col-xl-6">
                                                                                             <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap"
                                                                                                 data-name="your-phone"><input id="inputloanAmt" type="number" size="40"
-                                                                                                    className="loanAmount2 wpcf7-form-control wpcf7-text" aria-invalid="false"
+                                                                                                    className="loanAmount2 wpcf7-form-control" aria-invalid="false"
                                                                                                     placeholder="Loan Amount" /></span>
                                                                                             </div>
                                                                                         </div>
