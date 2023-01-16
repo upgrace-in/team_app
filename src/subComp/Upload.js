@@ -51,6 +51,7 @@ export default function Upload(props) {
                         .catch((error) => console.log(error.message));
                 }else{
                     setMsg("More Credits Are Needed")
+                    setdisableBtn(false)
                 }
             } else {
                 throw new Error;
