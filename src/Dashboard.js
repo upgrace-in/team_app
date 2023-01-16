@@ -209,7 +209,7 @@ export default function Dashboard(props) {
                 <button className="thm-btn sp"><a href="#" style={{ color: 'white' }}>Credits: $<span className="credits_div">0</span></a></button>
             </div>
 
-            <main style={{overflow: auto}}>
+            <main style={{overflow: 'auto'}}>
                 <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%", height: 100 + 'vh' }}>
                     <a href="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
                         style={{
