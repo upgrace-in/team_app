@@ -1,5 +1,10 @@
 /* Console */
 
+#searchBar{
+    padding: 15px;
+    border-radius: 15px;
+}
+
 .positionAbs {
     position: fixed;
     top: 10%;

@@ -38,7 +38,6 @@ export default function Upload(props) {
                     await axios
                         .post(props.endpoint + '/uploadReceipt', receiptData, { headers: { 'Content-Type': 'multipart/form-data' } })
                         .then((val) => {
-                            console.log(val);
                             if (val['data']['msg']) {
                                 setMsg("Receipt Uploaded !!!")
                                 // Changed

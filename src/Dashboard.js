@@ -124,7 +124,6 @@ export default function Dashboard(props) {
         let selectedloanOfficer = $('#selectedloanOfficer').val()
         let inputclosingdate = $('#inputclosingdate').val()
 
-
         try {
             if ((isString(fname)) &&
                 (isString(lname)) &&

@@ -4,10 +4,15 @@ import Container from './Container'
 import '../dashboard.css'
 import Receipts from "./Receipts"
 import Leads from "./Leads"
+import Search from "./Search"
 
 export default function Dashboard(props) {
 
     const [formState, setformState] = useState('Leads')
+
+    
+    const [leads, setLeads] = useState()
+    const [receipts, setReceipts] = useState()
 
     const [disableBtn, setdisableBtn] = useState(false)
 
@@ -26,8 +31,10 @@ export default function Dashboard(props) {
         session = props.session
         if (session.is_loanOfficer !== undefined)
             is_loanOfficer = true
-        else
+        else if (session.is_admin === true)
             is_loanOfficer = false
+        else
+            window.location.href = '/'
     }
     $('.hide_it').hide()
 
@@ -41,6 +48,7 @@ export default function Dashboard(props) {
             if (val['msg']) {
                 // Fill leads
                 let leadData = []
+                setLeads(val['data'])
                 val['data'].map(data => {
                     leadData.push(<Leads
                         is_loanOfficer={is_loanOfficer}
@@ -106,7 +114,6 @@ export default function Dashboard(props) {
         }).then(function (response) {
             return response.json()
         }).then(async function (val) {
-            console.log(val);
             if (val['msg']) {
                 alert("Credit Updated !!!")
                 await fetchReceipts()
@@ -148,10 +155,10 @@ export default function Dashboard(props) {
         }).then(function (response) {
             return response.json()
         }).then(function (val) {
-            console.log(val);
             if (val['msg']) {
                 // Fill leads
                 let receiptsData = []
+                setReceipts(val['data'])
                 val['data'].map(data => {
                     receiptsData.push(<Receipts setopenContainer={setopenContainer} setData={setData} endpoint={props.endpoint} key={data['uid']} uid={data['uid']} leadUID={data['leadUID']} emailAddress={data['emailAddress']} imageFile={data['imageFile']} inputRecAmt={data['inputRecAmt']} inputtxnAdd={data.inputtxnAdd} />);
                 });
@@ -235,10 +242,12 @@ export default function Dashboard(props) {
                         <div id="leadTableCon" className={formState == 'Leads' ? 'show mx-auto col-md-12' : 'hide'}>
                             <h1>Leads</h1>
                             <br />
+                            <Search deleteLead={deleteLead} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={leads} searchleads={true}  />
+                            <br />
                             <table className="table table-stripe">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
+                                        <th scope="col">UID</th>
                                         <th scope="col">Lead Name</th>
                                         <th scope="col">Lead Email</th>
                                         <th scope="col">Lead Phone</th>
@@ -269,10 +278,12 @@ export default function Dashboard(props) {
                         <div id="leadTableCon" className={formState == 'Receipts' ? 'show mx-auto col-md-12' : 'hide'}>
                             <h1>Receipts</h1>
                             <br />
+                            <Search setreceiptsData={setreceiptsData} setopenContainer={setopenContainer} endpoint={props.endpoint} setData={setData} deleteLead={deleteLead} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={null} receipts={receipts} searchleads={false}  />
+                            <br />
                             <table className="table table-stripe">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
+                                        <th scope="col">UID</th>
                                         <th scope="col">Lead ID</th>
                                         <th scope="col">User's Email</th>
                                         <th scope="col">Receipt</th>

@@ -1,5 +1,3 @@
-import Container from './Container'
-
 export default function Receipts(props) {
 
     return (

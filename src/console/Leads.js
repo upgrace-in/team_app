@@ -10,7 +10,6 @@ export default function Leads(props) {
             <td style={{ fontWeight: "700", color: props.leadstatus === 'Approved' ? 'green' : 'red' }}>{props.leadstatus}</td>
             <td style={{ fontWeight: "700", color: props.transaction === 'OPEN' ? 'green' : 'red' }}>{props.transaction}</td>
             {props.is_loanOfficer !== true ? <td><button className="btn btn-warning" onClick={() => props.deleteLead(props.uid, props.useremailAddress, props.leadmail)}>Delete</button></td> : ""}
-
         </tr>
     )
 }
