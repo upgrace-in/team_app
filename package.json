@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "chart.js": "^4.1.1",
+    "html-react-parser": "^3.0.7",
     "i": "^0.3.7",
     "jquery": "^3.6.1",
     "npm": "^9.1.3",

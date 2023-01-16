@@ -11,7 +11,7 @@ export default function UserForm(props) {
     const loginUser = (session) => {
         // create session
         localStorage.setItem("session", JSON.stringify(session['userdata']))
-        if((session.userdata.is_admin === true) || (session.userdata.is_loanOfficer === true))
+        if ((session.userdata.is_admin === true) || (session.userdata.is_loanOfficer === true))
             window.location.href = '/console'
         else
             window.location.href = '/dashboard'
@@ -34,7 +34,11 @@ export default function UserForm(props) {
             }).then(function (response) {
                 return response.json()
             }).then(function (val) {
-                setMsg(val.msg)
+                let msg = val.msg
+                // if (msg.includes('Password'))
+                    // Forgot Password
+                    // msg = <a className="cr">Forgot Password?</a>
+                setMsg(msg)
                 if (val.session.userdata !== null) {
                     loginUser(val['session'])
                 }

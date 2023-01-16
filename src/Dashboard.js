@@ -6,12 +6,12 @@ import Upload from './subComp/Upload'
 import Home from './subComp/Home'
 import Account from './subComp/Account'
 import Calculator from "./subComp/Calculator"
+import parse from 'html-react-parser'
+
 
 export default function Dashboard(props) {
 
     const [formState, setformState] = useState('Leads')
-
-    const [formData, setformData] = useState({})
 
     // EXPORTING
     const [leadDatas, setleadDatas] = useState()
@@ -93,6 +93,20 @@ export default function Dashboard(props) {
         });
     }
 
+    function isNumeric(value) {
+        if (value !== '')
+            return /^-?\d+$/.test(value);
+        else
+            return false
+    }
+
+    function isString(value) {
+        if (value !== '')
+            return $.type(value) === "string";
+        else
+            return false
+    }
+
     const submitLeadData = (e) => {
 
         e.preventDefault()
@@ -110,12 +124,14 @@ export default function Dashboard(props) {
         let selectedloanOfficer = $('#selectedloanOfficer').val()
         let inputclosingdate = $('#inputclosingdate').val()
 
+
         try {
-            if ((fname !== '') &&
-                (lname !== '') &&
-                (loanAmt !== '') &&
-                (inputEmail !== '') &&
-                (inputPhone !== '') &&
+            if ((isString(fname)) &&
+                (isString(lname)) &&
+                (isNumeric(loanAmt)) &&
+                (inputEmail != '') &&
+                (inputEmail.includes('@')) &&
+                (isNumeric(inputPhone)) &&
                 (clientActively != -1) &&
                 (clientReadyStatus != -1) &&
                 (offerAcceptedStatus != -1)) {
@@ -356,7 +372,7 @@ export default function Dashboard(props) {
                                                                                         </div>
                                                                                         <div className={clientReadyStatus !== -1 ? "show col-xl-12" : "hide"} style={{ background: '#fff', borderRadius: '10px' }}>
                                                                                             <div className="comment-form__input-box col-xl-12 mx-auto text-center" style={{ padding: 20 + 'px' }}>
-                                                                                                <p>{clientReadyMsg === 1 ? "Awesome! Please confirm your client is expecting our call. Please give us the best day and time to contact your client" : "We won't contact your client until you give us the green light. What's the best time to connect with you?"}</p>
+                                                                                                <p>{clientReadyMsg === 1 ? parse("Awesome! Please confirm your client is expecting our call.<br/>Please give us the best day and time to contact your client") : parse("We won't contact your client until you give us the green light.<br/>What's the best time to connect with you?")}</p>
                                                                                                 <div className="col-xl-4 mx-auto text-center">
                                                                                                     <span className="wpcf7-form-control-wrap"
                                                                                                         data-name="your-email">
