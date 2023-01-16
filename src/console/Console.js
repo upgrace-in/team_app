@@ -81,6 +81,7 @@ export default function Dashboard(props) {
             if (val['msg']) {
                 // Fill leads
                 let leadData = []
+                setLeads(val['data'])
                 val['data'].map(data => {
                     leadData.push(<Leads
                         is_loanOfficer={is_loanOfficer}
@@ -176,7 +177,8 @@ export default function Dashboard(props) {
             fetchLeads()
             fetchReceipts()
         } else {
-            fetchLoanLeads(props.session.emailAddress)
+            // fetchLoanLeads(props.session.emailAddress)
+            fetchLoanLeads("glozano@sl-lending.com")
         }
         setTimeout(() => {
             props.checkUserExists(props.session)
@@ -242,7 +244,7 @@ export default function Dashboard(props) {
                         <div id="leadTableCon" className={formState == 'Leads' ? 'show mx-auto col-md-12' : 'hide'}>
                             <h1>Leads</h1>
                             <br />
-                            <Search deleteLead={deleteLead} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={leads} searchleads={true}  />
+                            <Search deleteLead={deleteLead} leadData={leadData} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={leads} searchleads={true}  />
                             <br />
                             <table className="table table-stripe">
                                 <thead>
@@ -278,7 +280,7 @@ export default function Dashboard(props) {
                         <div id="leadTableCon" className={formState == 'Receipts' ? 'show mx-auto col-md-12' : 'hide'}>
                             <h1>Receipts</h1>
                             <br />
-                            <Search setreceiptsData={setreceiptsData} setopenContainer={setopenContainer} endpoint={props.endpoint} setData={setData} deleteLead={deleteLead} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={null} receipts={receipts} searchleads={false}  />
+                            <Search setreceiptsData={setreceiptsData} receiptsData={receiptsData} setopenContainer={setopenContainer} endpoint={props.endpoint} setData={setData} deleteLead={deleteLead} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={null} receipts={receipts} searchleads={false}  />
                             <br />
                             <table className="table table-stripe">
                                 <thead>
