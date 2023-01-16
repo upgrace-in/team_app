@@ -210,7 +210,7 @@ export default function Dashboard(props) {
             </div>
 
             <main style={{overflow: 'auto'}}>
-                <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%", height: 100 + 'vh' }}>
+                <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%", height: 200 + 'vh' }}>
                     <a href="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
                         style={{
                             background: '#000',
