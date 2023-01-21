@@ -5,12 +5,12 @@ import '../dashboard.css'
 import Receipts from "./Receipts"
 import Leads from "./Leads"
 import Search from "./Search"
+import Account from "../subComp/Account"
 import AddUsers from "./AddUsers"
 
 export default function Dashboard(props) {
 
     const [formState, setformState] = useState('Leads')
-
 
     const [leads, setLeads] = useState()
     const [receipts, setReceipts] = useState()
@@ -122,6 +122,9 @@ export default function Dashboard(props) {
             } else {
                 alert("Something went wrong !!!")
             }
+            setTimeout(() => {
+                setopenContainer(false)
+            }, 1000)
             setdisableBtn(false)
         });
 
@@ -225,6 +228,7 @@ export default function Dashboard(props) {
                                     {is_loanOfficer !== true ?
                                         <li><a onClick={() => setformState('AddUsers')} className="cur link-dark rounded">Add Users</a></li>
                                         : ""}
+                                    <li><a onClick={() => setformState('Account')} className="cur link-dark rounded">Account</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -315,6 +319,9 @@ export default function Dashboard(props) {
                             <h1>Add Users</h1>
                             <AddUsers endpoint={props.endpoint} />
                         </div>
+
+                        <Account session={props.session} endpoint={props.endpoint} formState={formState} />
+
                     </div>
 
                 </div>

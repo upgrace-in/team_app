@@ -11,9 +11,6 @@ export default function Account(props) {
         window.location.href = '/dashboard'
     }
 
-    useEffect(() => {
-    }, [])
-
     return (
         <div className={props.formState === 'Account' ? 'show' : 'hide'}>
             <div className={formSwitch === 0 ? 'show' : 'hide'}>

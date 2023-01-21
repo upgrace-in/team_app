@@ -4,6 +4,7 @@ import LeadTable from './subComp/LeadTable'
 import './dashboard.css'
 import Upload from './subComp/Upload'
 import Home from './subComp/Home'
+import Logs from './subComp/Logs'
 import Account from './subComp/Account'
 import Calculator from "./subComp/Calculator"
 import parse from 'html-react-parser'
@@ -90,8 +91,6 @@ export default function Dashboard(props) {
         setTimeout(() => {
             props.checkUserExists(props.session)
         }, 1000)
-
-
     }, [''])
 
     function submitIt(leadInfo) {
@@ -255,6 +254,7 @@ export default function Dashboard(props) {
                             <div className="collapse show" id="home-collapse">
                                 <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li><a onClick={() => setformState('Home')} className="cur link-dark rounded">Home</a></li>
+                                    {/* <li><a onClick={() => setformState('Logs')} className="cur link-dark rounded">Activity</a></li> */}
                                     <li><a onClick={() => setformState('Leads')} className="cur link-dark rounded">Your Leads</a></li>
                                     <li><a onClick={() => setformState('LeadForm')} className="cur link-dark rounded">Add Lead</a></li>
                                     <li><a onClick={() => setformState('Account')} className="cur link-dark rounded">Account</a></li>
@@ -582,6 +582,8 @@ export default function Dashboard(props) {
                         <Home endpoint={props.endpoint} leadDatas={leadDatas} formState={formState} emailAddress={session['emailAddress']} />
 
                         <Account session={props.session} endpoint={props.endpoint} formState={formState} />
+
+                        {/* <Logs formState={formState} endpoint={props.endpoint} session={props.session} /> */}
 
                         <Calculator formState={formState} calculator={props.calculator} />
                     </div>
