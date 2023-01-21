@@ -27,6 +27,8 @@ export default function Dashboard(props) {
     const [leadData, setleadData] = useState('')
     const [Msg, setMsg] = useState('')
 
+    const [loanOfficers, setloanOfficers] = useState()
+
     let session;
     let leadInfo = {};
 
@@ -61,9 +63,28 @@ export default function Dashboard(props) {
         });
     }
 
+    async function fetchLoanOfficers() {
+        fetch(props.endpoint + '/fetchLoanOfficers', {
+            method: 'GET',
+            headers: { "Content-Type": "application/json" }
+        }).then(function (response) {
+            return response.json()
+        }).then(function (val) {
+            if (val['msg']) {
+                setloanOfficers([val['data']])
+            } else {
+                // No Officers
+                setloanOfficers([])
+            }
+        });
+    }
+
     useEffect(() => {
         props.calculator($('.loanAmount2'), $('.credits'))
         fetchLeads()
+
+        // Fetching all loan Officers
+        fetchLoanOfficers()
 
         // setformData({ ...formData, fname: 'Hari' })
         setTimeout(() => {
@@ -445,13 +466,13 @@ export default function Dashboard(props) {
                                                                                                     data-name="your-name">
                                                                                                     <select className="form-select" id="selectedloanOfficer">
                                                                                                         <option value="0" defaultValue>Choose Lender</option>
-                                                                                                        <option value="victormackliff@gmail.com">Victor Mackliff</option>
-                                                                                                        <option value="SZepeda@sl-Lending.com">Sam Zepeda</option>
-                                                                                                        <option value="glozano@sl-lending.com">Gabe Lozano</option>
-                                                                                                        <option value="cmiranda@sl-lending.com">Chris Miranda</option>
-                                                                                                        <option value="DGonzalez@SL-Lending.com">Dulce Delgado</option>
-                                                                                                        <option value="BTorres@SL-Lending.com">Brenda Torres</option>
-                                                                                                        <option value="TCorral@SL-Lending.com">Tim Corral</option>
+                                                                                                        {
+                                                                                                            loanOfficers !== undefined ?
+                                                                                                                loanOfficers[0].map((data, i) => {
+                                                                                                                    return <option key={i} value={data.emailAddress}>{data.name}</option>
+                                                                                                                })
+                                                                                                                : () => { return null }
+                                                                                                        }
                                                                                                     </select>
                                                                                                 </span>
                                                                                                 </div>

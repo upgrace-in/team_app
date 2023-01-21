@@ -5,12 +5,13 @@ import '../dashboard.css'
 import Receipts from "./Receipts"
 import Leads from "./Leads"
 import Search from "./Search"
+import AddUsers from "./AddUsers"
 
 export default function Dashboard(props) {
 
     const [formState, setformState] = useState('Leads')
 
-    
+
     const [leads, setLeads] = useState()
     const [receipts, setReceipts] = useState()
 
@@ -218,8 +219,12 @@ export default function Dashboard(props) {
                             <div className="collapse show" id="home-collapse">
                                 <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li><a onClick={() => setformState('Leads')} className="cur link-dark rounded">Leads</a></li>
-                                    {is_loanOfficer !== true ? <li><a onClick={() => setformState('Receipts')} className="cur link-dark rounded">Receipts</a></li> : ""}
-
+                                    {is_loanOfficer !== true ?
+                                        <li><a onClick={() => setformState('Receipts')} className="cur link-dark rounded">Receipts</a></li>
+                                        : ""}
+                                    {is_loanOfficer !== true ?
+                                        <li><a onClick={() => setformState('AddUsers')} className="cur link-dark rounded">Add Users</a></li>
+                                        : ""}
                                 </ul>
                             </div>
                         </li>
@@ -244,7 +249,7 @@ export default function Dashboard(props) {
                         <div id="leadTableCon" className={formState == 'Leads' ? 'show mx-auto col-md-12' : 'hide'}>
                             <h1>Leads</h1>
                             <br />
-                            <Search deleteLead={deleteLead} leadData={leadData} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={leads} searchleads={true}  />
+                            <Search deleteLead={deleteLead} leadData={leadData} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={leads} searchleads={true} />
                             <br />
                             <table className="table table-stripe">
                                 <thead>
@@ -280,13 +285,12 @@ export default function Dashboard(props) {
                         <div id="leadTableCon" className={formState == 'Receipts' ? 'show mx-auto col-md-12' : 'hide'}>
                             <h1>Receipts</h1>
                             <br />
-                            <Search setreceiptsData={setreceiptsData} receiptsData={receiptsData} setopenContainer={setopenContainer} endpoint={props.endpoint} setData={setData} deleteLead={deleteLead} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={null} receipts={receipts} searchleads={false}  />
+                            <Search setreceiptsData={setreceiptsData} receiptsData={receiptsData} setopenContainer={setopenContainer} endpoint={props.endpoint} setData={setData} deleteLead={deleteLead} setleadData={setleadData} is_loanOfficer={is_loanOfficer} leads={null} receipts={receipts} searchleads={false} />
                             <br />
                             <table className="table table-stripe">
                                 <thead>
                                     <tr>
                                         <th scope="col">UID</th>
-                                        <th scope="col">Lead ID</th>
                                         <th scope="col">User's Email</th>
                                         <th scope="col">Receipt</th>
                                         <th scope="col">Receipt Amount</th>
@@ -305,6 +309,11 @@ export default function Dashboard(props) {
                                         </tr>}
                                 </tbody>
                             </table>
+                        </div>
+
+                        <div id="leadTableCon" className={formState == 'AddUsers' ? 'show mx-auto col-md-12' : 'hide'}>
+                            <h1>Add Users</h1>
+                            <AddUsers endpoint={props.endpoint} />
                         </div>
                     </div>
 
