@@ -11,7 +11,7 @@ import parse from 'html-react-parser'
 
 export default function Dashboard(props) {
 
-    const [formState, setformState] = useState('Leads')
+    const [formState, setformState] = useState('Home')
 
     // EXPORTING
     const [leadDatas, setleadDatas] = useState()
