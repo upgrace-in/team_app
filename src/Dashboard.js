@@ -124,6 +124,9 @@ export default function Dashboard(props) {
         let selectedloanOfficer = $('#selectedloanOfficer').val()
         let inputclosingdate = $('#inputclosingdate').val()
 
+        let inputNotes = $('#inputNotes').val()
+
+
         try {
             if ((isString(fname)) &&
                 (isString(lname)) &&
@@ -170,12 +173,14 @@ export default function Dashboard(props) {
 
                 // Checking client accepted yes or no + fields
                 if (offerAcceptedStatus === 1) {
-                    if ((inputAddress != '') &&
-                        (selectedloanOfficer != 0) &&
-                        (inputclosingdate != '')) {
+                    if ((inputAddress !== '') &&
+                        (selectedloanOfficer !== 0) &&
+                        (inputclosingdate !== '') &&
+                        (inputNotes !== '')) {
                         leadInfo.offerAcceptedStatus = {
                             "selectedloanOfficer": selectedloanOfficer,
                             "inputAddress": inputAddress,
+                            "inputNotes": inputNotes,
                             "inputclosingdate": inputclosingdate
                         }
                     } else {
@@ -209,7 +214,7 @@ export default function Dashboard(props) {
                 <button className="thm-btn sp"><a href="#" style={{ color: 'white' }}>Credits: $<span className="credits_div">0</span></a></button>
             </div>
 
-            <main style={{overflow: 'auto'}}>
+            <main style={{ overflow: 'auto' }}>
                 <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%", height: 200 + 'vh' }}>
                     <a href="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
                         style={{
@@ -217,7 +222,7 @@ export default function Dashboard(props) {
                             padding: '10px'
                         }}>
 
-                        <img className="mx-auto text-center" src="/static/wp-content/uploads/2022/11/aa-horizontal-logo-175x40-1.webp" />
+                        <img className="mx-auto text-center" src="/static/logoWhite.png" />
 
                     </a>
                     <ul className="list-unstyled ps-0">
@@ -444,9 +449,23 @@ export default function Dashboard(props) {
                                                                                                         <option value="SZepeda@sl-Lending.com">Sam Zepeda</option>
                                                                                                         <option value="glozano@sl-lending.com">Gabe Lozano</option>
                                                                                                         <option value="cmiranda@sl-lending.com">Chris Miranda</option>
-
+                                                                                                        <option value="DGonzalez@SL-Lending.com">Dulce Delgado</option>
+                                                                                                        <option value="BTorres@SL-Lending.com">Brenda Torres</option>
+                                                                                                        <option value="TCorral@SL-Lending.com">Tim Corral</option>
                                                                                                     </select>
                                                                                                 </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div className="col-xl-12">
+                                                                                                <div className="comment-form__input-box">
+                                                                                                    <span className="wpcf7-form-control-wrap"
+                                                                                                        data-name="your-email">
+                                                                                                        <textarea id="inputNotes" type="text"
+                                                                                                            rows="2"
+                                                                                                            className="wpcf7-form-control wpcf7-text"
+                                                                                                            aria-required="true" aria-invalid="false"
+                                                                                                            placeholder="Notes" ></textarea>
+                                                                                                    </span>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div className="col-xl-4">

@@ -21,16 +21,14 @@ export default function Upload(props) {
 
         let inputRecAmt = $('#inputRecAmt').val()
         let inputtxnAdd = $('#inputtxnAdd').val()
-        let leadUID = $('#leadUID').val()
         let imgTag = $('#imgTag').val()
         try {
-            if ((inputRecAmt !== '') && (inputtxnAdd !== '') && (leadUID !== '0') && (imgTag !== '')) {
+            if ((inputRecAmt !== '') && (inputtxnAdd !== '') && (imgTag !== '')) {
                 if (inputRecAmt < props.credits) {
 
                     receiptData.append("img", file);
                     receiptData.append("inputRecAmt", inputRecAmt)
                     receiptData.append("inputtxnAdd", inputtxnAdd)
-                    receiptData.append("leadUID", leadUID)
                     receiptData.append("emailAddress", props.emailAddress)
                     receiptData.append("password", props.password)
                     receiptData.append("uid", Math.random().toString(36).slice(2))
@@ -147,7 +145,7 @@ export default function Upload(props) {
                     <form className="wpcf7-form init">
                         <div className="comment-one__form ">
                             <div className="col-xl-12">
-                                <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap">
+                                {/* Leads where being fetch but stopepd <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap">
                                     <select className="form-select" id="leadUID">
                                         <option value="0" defaultValue>Select Lead</option>
                                         {
@@ -159,14 +157,14 @@ export default function Upload(props) {
                                         }
                                     </select>
                                 </span>
-                                </div>
+                                </div> */}
 
                             </div>
                             <div className="col-xl-12">
                                 <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap"
                                     data-name="your-name"><input id="inputtxnAdd" type="text" size="40"
                                         className="wpcf7-form-control wpcf7-text"
-                                        aria-required="true" aria-invalid="false" placeholder="Transaction Address" /></span>
+                                        aria-required="true" aria-invalid="false" placeholder="Description" /></span>
                                 </div>
                             </div>
                             <div className="col-xl-12">

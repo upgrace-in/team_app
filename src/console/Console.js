@@ -128,7 +128,7 @@ export default function Dashboard(props) {
 
     function setData(props) {
         // View container
-        setreceiptData(<Container disableBtn={disableBtn} setopenContainer={setopenContainer} updateCredits={updateCredits} endpoint={props.endpoint} uid={props.uid} leadUID={props.leadUID} emailAddress={props.emailAddress} imageFile={props.imageFile} inputRecAmt={props.inputRecAmt} inputtxnAdd={props.inputtxnAdd} />)
+        setreceiptData(<Container disableBtn={disableBtn} setopenContainer={setopenContainer} updateCredits={updateCredits} endpoint={props.endpoint} uid={props.uid} emailAddress={props.emailAddress} imageFile={props.imageFile} inputRecAmt={props.inputRecAmt} inputtxnAdd={props.inputtxnAdd} />)
     }
 
     async function deleteLead(uid, emailAddress, leadMailAddress) {
@@ -161,7 +161,7 @@ export default function Dashboard(props) {
                 let receiptsData = []
                 setReceipts(val['data'])
                 val['data'].map(data => {
-                    receiptsData.push(<Receipts setopenContainer={setopenContainer} setData={setData} endpoint={props.endpoint} key={data['uid']} uid={data['uid']} leadUID={data['leadUID']} emailAddress={data['emailAddress']} imageFile={data['imageFile']} inputRecAmt={data['inputRecAmt']} inputtxnAdd={data.inputtxnAdd} />);
+                    receiptsData.push(<Receipts setopenContainer={setopenContainer} setData={setData} endpoint={props.endpoint} key={data['uid']} uid={data['uid']} emailAddress={data['emailAddress']} imageFile={data['imageFile']} inputRecAmt={data['inputRecAmt']} inputtxnAdd={data.inputtxnAdd} />);
                 });
                 setreceiptsData(receiptsData)
             } else {
@@ -206,7 +206,7 @@ export default function Dashboard(props) {
                             padding: '10px'
                         }}>
 
-                        <img className="mx-auto text-center" src="/static/wp-content/uploads/2022/11/aa-horizontal-logo-175x40-1.webp" />
+                        <img className="mx-auto text-center" src="/static/logoWhite.png" />
 
                     </a>
                     <ul className="list-unstyled ps-0">

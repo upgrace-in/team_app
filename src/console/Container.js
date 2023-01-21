@@ -12,10 +12,6 @@ export default function Receipts(props) {
                     <td>{props.uid}</td>
                 </tr>
                 <tr>
-                    <td><b>Lead ID:</b></td>
-                    <td>{props.leadUID}</td>
-                </tr>
-                <tr>
                     <td><b>User's Email:</b></td>
                     <td>{props.emailAddress}</td>
                 </tr>

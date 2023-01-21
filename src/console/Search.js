@@ -69,7 +69,6 @@ export default function Search(props) {
                 endpoint={props.endpoint}
                 key={data['uid']}
                 uid={data['uid']}
-                leadUID={data['leadUID']}
                 emailAddress={data['emailAddress']}
                 imageFile={data['imageFile']}
                 inputRecAmt={data['inputRecAmt']}
@@ -86,7 +85,7 @@ export default function Search(props) {
         if (val.length === 11) {
             // UID & Lead ID filteration
             for (var i = 0; i < receipts.length; i++)
-                if ((receipts[i].uid === val) || (receipts[i].leadUID === val))
+                if ((receipts[i].uid === val))
                     filteredReceipts.push(receipts[i])
         } else {
             // User Email Address
@@ -106,7 +105,7 @@ export default function Search(props) {
                         data-name="your-name">
                         <input onChange={(e) => searchHandler(e.target.value)} id="searchBar" type="search" size="40"
                             className="wpcf7-form-control wpcf7-text"
-                            aria-required="true" aria-invalid="false" placeholder={props.searchleads === true ? props.is_loanOfficer === true ? "Search with UID / Users Email" : "Search with UID / Loan Officer Email / Users Email" : "Search with UID / Lead ID / Users Email"} /></span>
+                            aria-required="true" aria-invalid="false" placeholder={props.searchleads === true ? props.is_loanOfficer === true ? "Search with UID / Users Email" : "Search with UID / Loan Officer Email / Users Email" : "Search with UID / Users Email"} /></span>
                 </div>
             </div>
             <div className="col-1">
@@ -121,7 +120,7 @@ export default function Search(props) {
             <div className="col-1">
                 <div className="comment-form__input-box" style={{ marginTop: 15 + 'px' }}>
                     <span className="wpcf7-form-control-wrap">
-                        <button className="btn btn-danger" onClick={() => {props.searchleads === true ? putLeadData(leads) : putReceiptData(receipts); $('#searchBar').val('') }}>
+                        <button className="btn btn-danger" onClick={() => { props.searchleads === true ? putLeadData(leads) : putReceiptData(receipts); $('#searchBar').val('') }}>
                             <i className="fas fa-times" ></i>
                         </button>
                     </span>
