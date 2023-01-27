@@ -127,9 +127,9 @@ export default function Register(props) {
                 <div className="row text-center mx-auto">
                     <div className="col-xl-6">
                         <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap"
-                            data-name="your-name"><input required id="password" defaultValue={props.session.password} type="password" name="password" size="40"
+                            data-name="your-name"><input required id="password" minLength="8" defaultValue={props.session.password} type="password" name="password" size="40"
                                 className="wpcf7-form-control wpcf7-text"
-                                aria-required="true" aria-invalid="false" placeholder="Password" /></span>
+                                aria-required="true" aria-invalid="false" placeholder="Password (min. 8)" /></span>
                         </div>
                     </div>
                     <div className="col-xl-6">

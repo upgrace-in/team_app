@@ -40,11 +40,15 @@ export default function AddUsers(props) {
                     if (val['session'] !== null) {
                         // user register logged him in
                         setMsg("User Added !!!")
+                        $('#addUserForm').trigger("reset");
+                        setTimeout(() => {
+                            setMsg("")
+                            setdisableBTN(false)
+                        }, 1000)
+                    }else{
+                        setMsg("Something went wrong !!!")
+                        setdisableBTN(false)
                     }
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 1000)
-
                 });
             } else {
                 setMsg("Password unmatched !!!")
@@ -58,7 +62,7 @@ export default function AddUsers(props) {
     }
 
     return (
-        <form className="wpcf7-form init" style={{ marginTop: 2 + '%' }}>
+        <form id="addUserForm" className="wpcf7-form init" style={{ marginTop: 2 + '%' }}>
             <div className="comment-one__form ">
                 <div className='row'>
                     <div className="col-xl-6">

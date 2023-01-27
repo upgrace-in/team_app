@@ -35,7 +35,7 @@ export default function Dashboard(props) {
 
     // Chekcing is the users session is their   
     if (props.session === null) {
-        window.location.href = '/'
+        window.location.href = '/user/'
     } else {
         session = props.session
     }

@@ -27,7 +27,7 @@ export default function Dashboard(props) {
 
     // Chekcing is the users session is their   
     if (props.session === null) {
-        window.location.href = '/'
+        window.location.href = '/user/'
     } else {
         session = props.session
         if (session.is_loanOfficer !== undefined)
@@ -35,7 +35,7 @@ export default function Dashboard(props) {
         else if (session.is_admin === true)
             is_loanOfficer = false
         else
-            window.location.href = '/'
+            window.location.href = '/user/'
     }
     $('.hide_it').hide()
 
