@@ -24,6 +24,7 @@ export default function Upload(props) {
         let imgTag = $('#imgTag').val()
         try {
             if ((inputRecAmt !== '') && (inputtxnAdd !== '') && (imgTag !== '')) {
+                console.log(inputRecAmt, props.credits);
                 if (inputRecAmt < props.credits) {
 
                     receiptData.append("img", file);

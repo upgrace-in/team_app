@@ -28,7 +28,7 @@ export default function Dashboard(props) {
     const [leadData, setleadData] = useState('')
     const [Msg, setMsg] = useState('')
 
-    const [loanOfficers, setloanOfficers] = useState()
+    const [loanOfficers, setloanOfficers] = useState([])
 
     let session;
     let leadInfo = {};
@@ -64,7 +64,7 @@ export default function Dashboard(props) {
         });
     }
 
-    async function fetchLoanOfficers() {
+    const fetchLoanOfficers = async () => {
         fetch(props.endpoint + '/fetchLoanOfficers', {
             method: 'GET',
             headers: { "Content-Type": "application/json" }
@@ -73,9 +73,6 @@ export default function Dashboard(props) {
         }).then(function (val) {
             if (val['msg']) {
                 setloanOfficers([val['data']])
-            } else {
-                // No Officers
-                setloanOfficers([])
             }
         });
     }
@@ -238,11 +235,11 @@ export default function Dashboard(props) {
                 <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%", height: 200 + 'vh' }}>
                     <a href="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
                         style={{
-                            background: '#000',
-                            padding: '10px'
+                            
+                            padding: '0px'
                         }}>
 
-                        <img className="mx-auto text-center" src="/static/logoWhite.png" />
+                        <img className="mx-auto text-center" src="/static/logoBlack.png" />
 
                     </a>
                     <ul className="list-unstyled ps-0">
@@ -467,7 +464,8 @@ export default function Dashboard(props) {
                                                                                                     <select className="form-select" id="selectedloanOfficer">
                                                                                                         <option value="0" defaultValue>Choose Lender</option>
                                                                                                         {
-                                                                                                            loanOfficers !== undefined ?
+                                                                                                            // console.log(loanOfficers)
+                                                                                                            loanOfficers.length !== 0 ?
                                                                                                                 loanOfficers[0].map((data, i) => {
                                                                                                                     return <option key={i} value={data.emailAddress}>{data.name}</option>
                                                                                                                 })
