@@ -165,7 +165,7 @@ export default function UserForm(props) {
                                                                                     aria-required="true" aria-invalid="false" placeholder="Password" /></span>
                                                                             </div>
                                                                         </div>
-                                                                        <div className="wpcf7-response-output" style={{ display: 'block' }}>
+                                                                        <div className="wpcf7-response-output" style={{ display: 'block', color: 'red' }}>
                                                                             {Msg}
                                                                         </div>
                                                                         <div className="row">
