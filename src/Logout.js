@@ -4,7 +4,7 @@ export default function Logout() {
 
     useEffect(() => {
         localStorage.removeItem('session')
-        window.location.replace('/')
+        window.location.replace('/user/')
     }, [''])
 
     return (
