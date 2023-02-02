@@ -2,7 +2,8 @@ import { useState } from "react"
 
 export default function Receipts(props) {
 
-    const [recAmt, setrecAmt] = useState(props.inputRecAmt)
+    const [recAmt, setrecAmt] = useState(0)
+    const [recBTN, setrecBTN] = useState('Deduct')
 
     return (
         <>
@@ -21,9 +22,9 @@ export default function Receipts(props) {
                 </tr>
             </table>
             <div className="col-md-6">
-                <img src={props.endpoint + '/' + props.imageFile} />
+                <img src={props.endpoint + '/images/' + props.imageFile} />
             </div>
-            <br/>
+            <br />
             <div>
                 <div className="row">
                     <b><label>Receipt Amount:</label></b>
@@ -32,7 +33,7 @@ export default function Receipts(props) {
                             onChange={(e) => setrecAmt(e.target.value)} />
                     </div>
                     <div className="col-md-4 cr" style={{ paddingTop: 5 + 'px' }}>
-                        <button onClick={async () => props.updateCredits(props.uid, recAmt, props.emailAddress)} disabled={props.disableBtn} className="btn btn-primary">Update</button>
+                        <button onClick={async () => { setrecBTN('...'); props.updateCredits(setrecAmt, setrecBTN, props.uid, recAmt, props.emailAddress) }} disabled={props.disableBtn} className="btn btn-primary">{recBTN}</button>
                         &nbsp;
                         <button onClick={() => props.setopenContainer(false)} className="btn btn-primary">Close</button>
                     </div>

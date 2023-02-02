@@ -61,9 +61,9 @@ export default function Home(props) {
                 // totalDebits: total debits are all receipts they upload
                 let totalDebits = 0;
                 val.data.map(data => {
-                    totalDebits = totalDebits + parseInt(data.inputRecAmt)
+                    totalDebits = totalDebits + parseFloat(data.inputRecAmt)
                 });
-                settotalDebits(totalDebits)
+                settotalDebits(totalDebits.toFixed(2))
             } else {
                 // No Receipts
                 settotalDebits(0)
@@ -121,20 +121,19 @@ export default function Home(props) {
                     totaltxn++
                 }
 
-                if (data.transaction === 'CLOSED') {
-                    // avgLoanAmt: Average of all closed loans
-                    avgcount++
-                    avgLoanAmt = avgLoanAmt + parseInt(data.loanAmt)
-                }
+                // if (data.transaction === 'CLOSED') {
+                // }
+                // avgLoanAmt: Average of all closed loans
+                avgcount++
+                avgLoanAmt = avgLoanAmt + parseInt(data.loanAmt)
 
             });
 
-
-            // changed
-            renderChart(Object.keys(totalTransactions), Object.values(totalTransactions), ctx)
+            if (process.env.REACT_APP_LIVE === 1)
+                renderChart(Object.keys(totalTransactions), Object.values(totalTransactions), ctx)
 
             if (avgLoanAmt !== 0)
-                setavgLoanAmt(avgLoanAmt / avgcount)
+                setavgLoanAmt((avgLoanAmt / avgcount).toFixed(2))
 
             settotalTxn(totaltxn)
             setclosedTxn(closedTxn)

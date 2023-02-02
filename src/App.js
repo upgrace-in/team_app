@@ -12,9 +12,12 @@ import {
 
 function App() {
 
-  // const ENDPOINT = "https://teamapi.upgrace.in"
-  const ENDPOINT = "https://api.teamagentadvantage.com"
-  
+  let ENDPOINT
+  if (process.env.REACT_APP_LIVE === 1)
+    ENDPOINT = "https://api.teamagentadvantage.com"
+  else
+    ENDPOINT = "http://localhost:4000"
+
   let sessionData = JSON.parse(localStorage.getItem('session'))
   if (sessionData != null) {
     // Clear the clicks

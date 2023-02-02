@@ -17,9 +17,10 @@ export default function Dashboard(props) {
     // EXPORTING
     const [leadDatas, setleadDatas] = useState()
 
-    const [clientReadyMsg, setclientReadyMsg] = useState(0)
+    const [clientReadyMsg, setclientReadyMsg] = useState(-1)
 
     const [clientReadyStatus, setclientReadyStatus] = useState(-1)
+
     const [clientActively, setclientActively] = useState(-1)
     const [offerAcceptedStatus, setofferAcceptedStatus] = useState(-1)
 
@@ -100,7 +101,6 @@ export default function Dashboard(props) {
         }).then(function (val) {
             if (val['msg']) {
                 setMsg("Awesome! You are all set. See you at closing!")
-                // Changed
                 setTimeout(() => {
                     window.location.reload()
                 }, 1000)
@@ -148,12 +148,12 @@ export default function Dashboard(props) {
             if ((isString(fname)) &&
                 (isString(lname)) &&
                 (isNumeric(loanAmt)) &&
-                (inputEmail != '') &&
+                (inputEmail !== '') &&
                 (inputEmail.includes('@')) &&
                 (isNumeric(inputPhone)) &&
-                (clientActively != -1) &&
-                (clientReadyStatus != -1) &&
-                (offerAcceptedStatus != -1)) {
+                (clientActively !== -1) &&
+                (clientReadyStatus !== -1) &&
+                (offerAcceptedStatus !== -1)) {
 
                 leadInfo.fname = fname
                 leadInfo.lname = lname
@@ -169,23 +169,28 @@ export default function Dashboard(props) {
 
                 // Checking client ready status 
                 let dateTime = $('#dateTime').val()
-                if (dateTime != '') {
+                if ((dateTime !== '') || (clientReadyStatus === 2)) {
                     if (clientReadyStatus === 1) {
                         leadInfo.clientReady = dateTime;
-                    } else {
+                    } else if (clientReadyStatus === 0) {
                         leadInfo.talkFirst = dateTime;
+                    } else if (clientReadyStatus === 2) {
+                        leadInfo.connectwithLender = true
                     }
                 } else {
-                    throw new Error;
+                    throw "Invalid dateTime";
                 }
 
                 // Checking client actively yes or no
                 if (clientActively === 1) {
                     leadInfo.clientActivelyLooking = true
-                } else if (clientActively === 0) {
+                } else if (clientActively === 2) {
                     leadInfo.clientActivelyLooking = false
+                } else if (clientActively === 0) {
+                    leadInfo.clientActivelyLooking = 'escrow'
+
                 } else {
-                    throw new Error;
+                    throw "Input all fields !!!";
                 }
 
                 // Checking client accepted yes or no + fields
@@ -201,12 +206,12 @@ export default function Dashboard(props) {
                             "inputclosingdate": inputclosingdate
                         }
                     } else {
-                        throw new Error;
+                        throw "Invalid Address !!!";
                     }
                 } else if (offerAcceptedStatus === 0) {
                     leadInfo.offerAcceptedStatus = false
                 } else {
-                    throw new Error;
+                    throw "Input all fields !!!";
                 }
 
                 leadInfo.uid = Math.random().toString(36).slice(2)
@@ -214,11 +219,12 @@ export default function Dashboard(props) {
                 submitIt(leadInfo)
 
             } else {
-                throw new Error;
+                throw "Input all fields !!!";
             }
         } catch (e) {
             console.log(e)
-            setMsg("Please enter valid data!!!")
+            // setMsg("Please enter valid data!!!")
+            setMsg(e)
             setdisableBtn(false)
         }
     }
@@ -235,7 +241,7 @@ export default function Dashboard(props) {
                 <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%", height: 200 + 'vh' }}>
                     <a href="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
                         style={{
-                            
+
                             padding: '0px'
                         }}>
 
@@ -372,7 +378,17 @@ export default function Dashboard(props) {
 
                                                                                     </div>
                                                                                     <div className="row pd-left">
-                                                                                        <div className="col-xl-6">
+                                                                                        <div className="col-xl-4">
+                                                                                            <div className="comment-form__input-box">
+                                                                                                <span className="wpcf7-form-control-wrap">
+                                                                                                    <div onClick={() => { setclientReadyStatus(2); setclientReadyMsg(-1); }} className="custom-control custom-radio custom-control-inline">
+                                                                                                        <input type="radio" id="clientReadyStatus" name="clientReadyStatus" className="input2 custom-control-input" />
+                                                                                                        <label className="custom-control-label" htmlFor="clientReadyStatus">Connect with Lender</label>
+                                                                                                    </div>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div className="col-xl-4">
                                                                                             <div className="comment-form__input-box">
                                                                                                 <span className="wpcf7-form-control-wrap">
                                                                                                     <div onClick={() => { setclientReadyStatus(1); setclientReadyMsg(1) }} className="custom-control custom-radio custom-control-inline">
@@ -382,7 +398,7 @@ export default function Dashboard(props) {
                                                                                                 </span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div className="col-xl-6">
+                                                                                        <div className="col-xl-4">
                                                                                             <div className="comment-form__input-box">
                                                                                                 <span className="wpcf7-form-control-wrap">
                                                                                                     <div onClick={() => { setclientReadyStatus(0); setclientReadyMsg(0) }} className="custom-control custom-radio custom-control-inline">
@@ -392,7 +408,7 @@ export default function Dashboard(props) {
                                                                                                 </span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div className={clientReadyStatus !== -1 ? "show col-xl-12" : "hide"} style={{ background: '#fff', borderRadius: '10px' }}>
+                                                                                        <div className={clientReadyMsg !== -1 ? "show col-xl-12" : "hide"} style={{ background: '#fff', borderRadius: '10px' }}>
                                                                                             <div className="comment-form__input-box col-xl-12 mx-auto text-center" style={{ padding: 20 + 'px' }}>
                                                                                                 <p>{clientReadyMsg === 1 ? parse("Awesome! Please confirm your client is expecting our call.<br/>Please give us the best day and time to contact your client") : parse("We won't contact your client until you give us the green light.<br/>What's the best time to connect with you?")}</p>
                                                                                                 <div className="col-xl-4 mx-auto text-center">
@@ -406,7 +422,17 @@ export default function Dashboard(props) {
                                                                                     </div>
                                                                                     <div className="row pd-left">
                                                                                         <label>Is your client actively looking?</label>
-                                                                                        <div className="col-xl-6">
+                                                                                        <div className="col-xl-4">
+                                                                                            <div className="comment-form__input-box">
+                                                                                                <span className="wpcf7-form-control-wrap">
+                                                                                                    <div onClick={() => setclientActively(0)} className="custom-control custom-radio custom-control-inline">
+                                                                                                        <input type="radio" id="customRadioInline3" name="customRadioInline3" className="input2 custom-control-input" />
+                                                                                                        <label className="custom-control-label" htmlFor="customRadioInline3">In escrow</label>
+                                                                                                    </div>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div className="col-xl-4">
                                                                                             <div className="comment-form__input-box">
                                                                                                 <span className="wpcf7-form-control-wrap">
                                                                                                     <div onClick={() => setclientActively(1)} className="custom-control custom-radio custom-control-inline">
@@ -416,10 +442,10 @@ export default function Dashboard(props) {
                                                                                                 </span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div className="col-xl-6">
+                                                                                        <div className="col-xl-4">
                                                                                             <div className="comment-form__input-box">
                                                                                                 <span className="wpcf7-form-control-wrap">
-                                                                                                    <div onClick={() => setclientActively(0)} className="custom-control custom-radio custom-control-inline">
+                                                                                                    <div onClick={() => setclientActively(2)} className="custom-control custom-radio custom-control-inline">
                                                                                                         <input type="radio" id="customRadioInline4" name="customRadioInline3" className="input2 custom-control-input" />
                                                                                                         <label className="custom-control-label" htmlFor="customRadioInline4">No</label>
                                                                                                     </div>

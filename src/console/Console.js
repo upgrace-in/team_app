@@ -105,7 +105,7 @@ export default function Dashboard(props) {
         });
     }
 
-    async function updateCredits(uid, inputRecAmt, emailAddress) {
+    async function updateCredits(setrecAmt, setBTN, uid, inputRecAmt, emailAddress) {
 
         setdisableBtn(true)
 
@@ -117,15 +117,14 @@ export default function Dashboard(props) {
             return response.json()
         }).then(async function (val) {
             if (val['msg']) {
-                alert("Credit Updated !!!")
+                alert("Credit Deducted !!!")
                 await fetchReceipts()
             } else {
-                alert("Something went wrong !!!")
+                alert(val.response)
             }
-            setTimeout(() => {
-                setopenContainer(false)
-            }, 1000)
             setdisableBtn(false)
+            setBTN("Deduct")
+            setrecAmt(0)
         });
 
     };
@@ -153,6 +152,26 @@ export default function Dashboard(props) {
         });
     }
 
+    async function deleteIt(prs) {
+        // alert(prs.uid)
+        // deleteReceipt
+        fetch(props.endpoint + '/deleteReceipt', {
+            method: 'POST',
+            body: JSON.stringify({ uid: prs.uid }),
+            headers: { "Content-Type": "application/json" }
+        }).then(function (response) {
+            return response.json()
+        }).then(async (val) => {
+            if (val['msg']) {
+                // Fill leads
+                alert("Deleted !!!")
+                await fetchReceipts()
+            } else {
+                alert("Unable to delete !!!")
+            }
+        });
+    }
+
     async function fetchReceipts() {
         fetch(props.endpoint + '/fetchAllReceipts', {
             method: 'GET',
@@ -165,7 +184,7 @@ export default function Dashboard(props) {
                 let receiptsData = []
                 setReceipts(val['data'])
                 val['data'].map(data => {
-                    receiptsData.push(<Receipts setopenContainer={setopenContainer} setData={setData} endpoint={props.endpoint} key={data['uid']} uid={data['uid']} emailAddress={data['emailAddress']} imageFile={data['imageFile']} inputRecAmt={data['inputRecAmt']} inputtxnAdd={data.inputtxnAdd} />);
+                    receiptsData.push(<Receipts deleteIt={deleteIt} setopenContainer={setopenContainer} setData={setData} endpoint={props.endpoint} key={data['uid']} uid={data['uid']} emailAddress={data['emailAddress']} imageFile={data['imageFile']} inputRecAmt={data['inputRecAmt']} inputtxnAdd={data.inputtxnAdd} />);
                 });
                 setreceiptsData(receiptsData)
             } else {
@@ -298,12 +317,14 @@ export default function Dashboard(props) {
                                         <th scope="col">User's Email</th>
                                         <th scope="col">Receipt</th>
                                         <th scope="col">Receipt Amount</th>
-                                        <th scope="col">Transaction Address</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="leadData">
                                     {receiptsData !== '' ? receiptsData :
                                         <tr>
+                                            <th scope="col">...</th>
                                             <th scope="col">...</th>
                                             <th scope="col">...</th>
                                             <th scope="col">...</th>

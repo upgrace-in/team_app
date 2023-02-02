@@ -15,7 +15,6 @@ export default function Upload(props) {
 
         const receiptData = new FormData();
 
-        // Changed
         setdisableBtn(true)
         setMsg('Processing...')
 
@@ -31,7 +30,6 @@ export default function Upload(props) {
                     receiptData.append("inputRecAmt", inputRecAmt)
                     receiptData.append("inputtxnAdd", inputtxnAdd)
                     receiptData.append("emailAddress", props.emailAddress)
-                    receiptData.append("password", props.password)
                     receiptData.append("uid", Math.random().toString(36).slice(2))
 
                     await axios
@@ -39,7 +37,6 @@ export default function Upload(props) {
                         .then((val) => {
                             if (val['data']['msg']) {
                                 setMsg("Receipt Uploaded !!!")
-                                // Changed
                                 setTimeout(() => {
                                     window.location.reload()
                                 }, 1000)
