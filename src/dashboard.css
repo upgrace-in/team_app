@@ -5,6 +5,10 @@
     border-radius: 15px;
 }
 
+.table{
+    overflow: auto !important;
+}
+
 .positionAbs {
     position: fixed;
     top: 10%;

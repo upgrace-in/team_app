@@ -12,6 +12,8 @@ import parse from 'html-react-parser'
 
 export default function Dashboard(props) {
 
+    const [pending, setPending] = useState(0)
+
     const [formState, setformState] = useState('Home')
 
     // EXPORTING
@@ -52,8 +54,12 @@ export default function Dashboard(props) {
             if (val['msg']) {
                 // Fill leads
                 let leadData = []
+                setPending(0)
                 val['data'].map(data => {
-                    leadData.push(<LeadTable key={data['uid']} uid={data['uid']} transaction={data['transaction']} leadname={data['fname']} mail={data['inputEmail']} phone={data['inputPhone']} leadamt={data['loanAmt']} leadstatus={data['offerAcceptedStatus'] === false ? "Not Yet" : "Approved"} />);
+                    let credits = ((parseFloat(data.loanAmt) * process.env.REACT_APP_CALCULATOR) / 100).toFixed(2)
+                    if (data.transaction === 'OPEN')
+                        setPending(pending => (parseFloat(pending) + parseFloat(credits)).toFixed(2))
+                    leadData.push(<LeadTable key={data['uid']} uid={data['uid']} credits={credits} transaction={data['transaction']} leadname={data['fname']} mail={data['inputEmail']} phone={data['inputPhone']} leadamt={data['loanAmt']} leadstatus={data['offerAcceptedStatus'] === false ? "Not Yet" : "Approved"} />);
                 });
                 setleadDatas(val['data'])
                 setleadData(leadData)
@@ -235,6 +241,7 @@ export default function Dashboard(props) {
             <div className="sideCon">
                 <button className="thm-btn sp">Welcome: <span className="username"></span></button>
                 <button className="thm-btn sp"><a href="#" style={{ color: 'white' }}>Credits: $<span className="credits_div">0</span></a></button>
+                <button style={{ background: 'grey' }} className="thm-btn sp"><a href="#" style={{ color: 'white' }}>Pending: $<span className="pending_credits_div">{pending}</span></a></button>
             </div>
 
             <main style={{ overflow: 'auto' }}>

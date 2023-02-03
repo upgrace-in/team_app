@@ -125,7 +125,7 @@ export default function Home(props) {
                 // }
                 // avgLoanAmt: Average of all closed loans
                 avgcount++
-                avgLoanAmt = avgLoanAmt + parseInt(data.loanAmt)
+                avgLoanAmt = avgLoanAmt + parseFloat(data.loanAmt)
 
             });
 

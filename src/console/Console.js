@@ -55,6 +55,7 @@ export default function Dashboard(props) {
                         is_loanOfficer={is_loanOfficer}
                         useremailAddress={data.emailAddress}
                         deleteLead={deleteLead}
+                        closeLead={closeLead}
                         key={data['uid']}
                         uid={data['uid']}
                         transaction={data['transaction']}
@@ -87,7 +88,6 @@ export default function Dashboard(props) {
                     leadData.push(<Leads
                         is_loanOfficer={is_loanOfficer}
                         useremailAddress={data.emailAddress}
-                        deleteLead={deleteLead}
                         key={data['uid']}
                         uid={data['uid']}
                         transaction={data['transaction']}
@@ -103,6 +103,25 @@ export default function Dashboard(props) {
                 setleadData('')
             }
         });
+    }
+
+    async function closeLead(uid, emailAddress) {
+        let response = window.confirm("Are you sure you want to close the lead?");
+        if (response)
+            fetch(props.endpoint + '/closeLead', {
+                method: 'POST',
+                body: JSON.stringify({ uid, emailAddress }),
+                headers: { "Content-Type": "application/json" }
+            }).then(function (response) {
+                return response.json()
+            }).then(function (val) {
+                if (val['msg']) {
+                    alert("Lead Closed !!!")
+                    fetchLeads()
+                } else {
+                    alert(val.response)
+                }
+            });
     }
 
     async function updateCredits(setrecAmt, setBTN, uid, inputRecAmt, emailAddress) {
@@ -135,41 +154,43 @@ export default function Dashboard(props) {
     }
 
     async function deleteLead(uid, emailAddress, leadMailAddress) {
-        fetch(props.endpoint + '/deleteLead', {
-            method: 'POST',
-            body: JSON.stringify({ uid, emailAddress, leadMailAddress }),
-            headers: { "Content-Type": "application/json" }
-        }).then(function (response) {
-            return response.json()
-        }).then(function (val) {
-            console.log(val);
-            if (val['msg']) {
-                alert("Lead Deleted !!!")
-                fetchLeads()
-            } else {
-                alert("Something went wrong !!!")
-            }
-        });
+        let response = window.confirm("Are you sure you want to do delete the lead?");
+        if (response)
+            fetch(props.endpoint + '/deleteLead', {
+                method: 'POST',
+                body: JSON.stringify({ uid, emailAddress, leadMailAddress }),
+                headers: { "Content-Type": "application/json" }
+            }).then(function (response) {
+                return response.json()
+            }).then(function (val) {
+                console.log(val);
+                if (val['msg']) {
+                    alert("Lead Deleted !!!")
+                    fetchLeads()
+                } else {
+                    alert("Something went wrong !!!")
+                }
+            });
     }
 
     async function deleteIt(prs) {
-        // alert(prs.uid)
-        // deleteReceipt
-        fetch(props.endpoint + '/deleteReceipt', {
-            method: 'POST',
-            body: JSON.stringify({ uid: prs.uid }),
-            headers: { "Content-Type": "application/json" }
-        }).then(function (response) {
-            return response.json()
-        }).then(async (val) => {
-            if (val['msg']) {
-                // Fill leads
-                alert("Deleted !!!")
-                await fetchReceipts()
-            } else {
-                alert("Unable to delete !!!")
-            }
-        });
+        let response = window.confirm("Are you sure you want to delete the receipt?");
+        if (response)
+            fetch(props.endpoint + '/deleteReceipt', {
+                method: 'POST',
+                body: JSON.stringify({ uid: prs.uid }),
+                headers: { "Content-Type": "application/json" }
+            }).then(function (response) {
+                return response.json()
+            }).then(async (val) => {
+                if (val['msg']) {
+                    // Fill leads
+                    alert("Deleted !!!")
+                    await fetchReceipts()
+                } else {
+                    alert("Unable to delete !!!")
+                }
+            });
     }
 
     async function fetchReceipts() {
