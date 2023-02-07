@@ -106,8 +106,15 @@ export default function UserForm(props) {
                                                                                     aria-required="true" aria-invalid="false" placeholder="Password" /></span>
                                                                             </div>
                                                                         </div>
-                                                                        <div className="wpcf7-response-output" style={{ display: 'block', color: 'red' }}>
-                                                                            {Msg}
+                                                                        <div className='row'>
+                                                                            <div className='col-md-6 text-left'>
+                                                                                <div className="wpcf7-response-output" style={{ display: 'block', color: 'red' }}>
+                                                                                    {Msg}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className='col-md-6 ml-auto text-right' style={{ textAlign: 'right' }}>
+                                                                                <a href='/forgot/'>Forgot Password?</a>
+                                                                            </div>
                                                                         </div>
                                                                         <div className="row">
                                                                             <button onClick={loginForm} type="submit" className="thm-btn comment-form__btn">Login Now</button>

@@ -1,5 +1,6 @@
 import Logout from "./Logout";
 import User from "./User";
+import Forgot from "./Forgot";
 import Dashboard from "./Dashboard";
 import Console from "./console/Console";
 import $ from 'jquery';
@@ -15,8 +16,9 @@ function App() {
   let ENDPOINT
   if (process.env.REACT_APP_LIVE === 1)
     ENDPOINT = "https://api.teamagentadvantage.com"
-  else
+  else{
     ENDPOINT = "http://localhost:4000"
+  }
 
   let sessionData = JSON.parse(localStorage.getItem('session'))
   if (sessionData != null) {
@@ -66,6 +68,7 @@ function App() {
       <Routes>
         <Route exact path='/Logout' element={<Logout />}></Route>
         <Route exact path='/user' element={<User endpoint={ENDPOINT} session={sessionData} />}></Route>
+        <Route exact path='/forgot' element={<Forgot endpoint={ENDPOINT} />}></Route>
         <Route exact path='/dashboard' element={<Dashboard calculator={calculator} endpoint={ENDPOINT} session={sessionData} checkUserExists={checkUserExists} />}></Route>
         <Route exact path='/console' element={<Console endpoint={ENDPOINT} session={sessionData} checkUserExists={checkUserExists} />}></Route>
       </Routes>
