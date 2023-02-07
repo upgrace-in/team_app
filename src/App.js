@@ -14,9 +14,9 @@ import {
 function App() {
 
   let ENDPOINT
-  if (process.env.REACT_APP_LIVE === 1)
+  if (process.env.REACT_APP_LIVE == 1) {
     ENDPOINT = "https://api.teamagentadvantage.com"
-  else{
+  } else {
     ENDPOINT = "http://localhost:4000"
   }
 
