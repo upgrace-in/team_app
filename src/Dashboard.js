@@ -41,6 +41,8 @@ export default function Dashboard(props) {
         window.location.href = '/user/'
     } else {
         session = props.session
+        if(session.is_admin)
+            window.location.href = '/console/'
     }
     $('.hide_it').hide()
 
@@ -390,7 +392,7 @@ export default function Dashboard(props) {
                                                                                                 <span className="wpcf7-form-control-wrap">
                                                                                                     <div onClick={() => { setclientReadyStatus(2); setclientReadyMsg(-1); }} className="custom-control custom-radio custom-control-inline">
                                                                                                         <input type="radio" id="clientReadyStatus" name="clientReadyStatus" className="input2 custom-control-input" />
-                                                                                                        <label className="custom-control-label" htmlFor="clientReadyStatus">Connect with Lender</label>
+                                                                                                        <label className="custom-control-label" htmlFor="clientReadyStatus">Connected with Lender</label>
                                                                                                     </div>
                                                                                                 </span>
                                                                                             </div>
@@ -427,6 +429,7 @@ export default function Dashboard(props) {
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+                                                                                    <hr style={{background: 'grey'}}/>
                                                                                     <div className="row pd-left">
                                                                                         <label>Is your client actively looking?</label>
                                                                                         <div className="col-xl-4">
@@ -460,9 +463,10 @@ export default function Dashboard(props) {
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+                                                                                    <hr style={{background: 'grey'}}/>
                                                                                     <div className="row pd-left">
                                                                                         <label>Has offer been Accepted?</label>
-                                                                                        <div className="col-xl-6">
+                                                                                        <div className="col-xl-4">
                                                                                             <div className="comment-form__input-box">
                                                                                                 <span className="wpcf7-form-control-wrap">
                                                                                                     <div onClick={() => setofferAcceptedStatus(1)} className="custom-control custom-radio custom-control-inline">
@@ -472,7 +476,7 @@ export default function Dashboard(props) {
                                                                                                 </span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div className="col-xl-6">
+                                                                                        <div className="col-xl-4">
                                                                                             <div className="comment-form__input-box">
                                                                                                 <span className="wpcf7-form-control-wrap">
                                                                                                     <div onClick={() => setofferAcceptedStatus(0)} className="custom-control custom-radio custom-control-inline">
@@ -536,6 +540,7 @@ export default function Dashboard(props) {
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+                                                                                    <hr style={{background: 'grey'}}/>
                                                                                     <div className="col-xl-12 pd-left">
                                                                                         <div className="comment-form__input-box">
                                                                                             <span className="wpcf7-form-control-wrap">

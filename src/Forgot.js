@@ -23,7 +23,7 @@ export default function Forgot(props) {
         }).then(function (response) {
             return response.json()
         }).then(function (val) {
-            if (val) {
+            if (val.msg) {
                 $('#loginEmail').val('')
                 setMsg("A six digit code has been sent to your email address !!!")
                 setformSwitch("code")
@@ -41,7 +41,7 @@ export default function Forgot(props) {
         }).then(function (response) {
             return response.json()
         }).then(function (val) {
-            if (val) {
+            if (val.msg) {
                 $('#loginEmail').val('')
                 setMsg("Code Verified !!!")
                 setformSwitch("passwordChange")
@@ -69,7 +69,7 @@ export default function Forgot(props) {
         }).then(function (response) {
             return response.json()
         }).then(function (val) {
-            if (val) {
+            if (val.msg) {
                 setMsg("Password Updated !!!")
                 setTimeout(() => {
                     window.location.href = '/user/'

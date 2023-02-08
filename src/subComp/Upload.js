@@ -45,7 +45,7 @@ export default function Upload(props) {
                             }
                         })
                         .catch((error) => console.log(error.message));
-                }else{
+                } else {
                     setMsg("More Credits Are Needed")
                     setdisableBtn(false)
                 }
@@ -114,8 +114,12 @@ export default function Upload(props) {
                     $('.drapHeader').html('Your File :')
                     $('.drapOR').hide()
                     button.innerHTML = receiptfile.name
-                    setFile(receiptfile);
-                    setFileName(receiptfile.name);
+                    if ((receiptfile.size / 1024) > 500)
+                        alert("File Size Should be within 500 kb")
+                    else {
+                        setFile(receiptfile);
+                        setFileName(receiptfile.name);
+                    }
                 }
                 fileReader.readAsDataURL(receiptfile);
             } else {
@@ -134,7 +138,7 @@ export default function Upload(props) {
             <div className="row" style={{ padding: 10 + 'px' }}>
                 <div className="drag-area col-md-6">
                     <div className="icon"><i className="fas fa-cloud-upload-alt"></i></div>
-                    <header className="drapHeader">Drag & Drop to Upload File</header>
+                    <header className="drapHeader text-center">Drag & Drop to Upload File<br />(max. 300kb)</header>
                     <span className="drapOR">OR</span>
                     <button>{fileName}</button>
                     <input onChange={handleChange} id="imgTag" type="file" hidden />

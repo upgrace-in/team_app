@@ -63,7 +63,7 @@ export default function Home(props) {
                 val.data.map(data => {
                     totalDebits = totalDebits + parseFloat(data.inputRecAmt)
                 });
-                settotalDebits(totalDebits.toFixed(2))
+                settotalDebits(parseInt(totalDebits).toLocaleString())
             } else {
                 // No Receipts
                 settotalDebits(0)
@@ -121,9 +121,7 @@ export default function Home(props) {
                     totaltxn++
                 }
 
-                // if (data.transaction === 'CLOSED') {
-                // }
-                // avgLoanAmt: Average of all closed loans
+                // average count
                 avgcount++
                 avgLoanAmt = avgLoanAmt + parseFloat(data.loanAmt)
 
@@ -133,7 +131,7 @@ export default function Home(props) {
                 renderChart(Object.keys(totalTransactions), Object.values(totalTransactions), ctx)
 
             if (avgLoanAmt !== 0)
-                setavgLoanAmt((avgLoanAmt / avgcount).toFixed(2))
+                setavgLoanAmt((parseInt(avgLoanAmt / avgcount)).toLocaleString())
 
             settotalTxn(totaltxn)
             setclosedTxn(closedTxn)

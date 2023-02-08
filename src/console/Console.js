@@ -238,12 +238,12 @@ export default function Dashboard(props) {
             </div>
 
             <div className={openContainer ? "show" : "hide"} id="overlay"></div>
-            <div className={openContainer ? "show positionAbs" : "hide"}>
+            <div className={openContainer ? "show positionAbs col-md-6" : "hide"}>
                 {receiptData}
             </div>
 
-            <main>
-                <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%", height: 100 + 'vh' }}>
+            <main style={{height: 100+'vh'}}>
+                <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%" }}>
                     <a href="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
                         style={{
                             background: '#000',
