@@ -499,7 +499,7 @@ export default function Dashboard(props) {
                                                                                                 <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap"
                                                                                                     data-name="your-name">
                                                                                                     <select className="form-select" id="selectedloanOfficer">
-                                                                                                        <option value="0" defaultValue>Choose Lender</option>
+                                                                                                        <option value="0" defaultValue>Choose Loan Officer</option>
                                                                                                         {
                                                                                                             // console.log(loanOfficers)
                                                                                                             loanOfficers.length !== 0 ?

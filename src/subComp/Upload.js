@@ -144,7 +144,7 @@ export default function Upload(props) {
                     <input onChange={handleChange} id="imgTag" type="file" hidden />
                 </div>
                 <div className="col-md-6">
-                    <form className="wpcf7-form init">
+                    <form id="receiptFORM" className="wpcf7-form init">
                         <div className="comment-one__form ">
                             <div className="col-xl-12">
                                 {/* Leads where being fetch but stopepd <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap">

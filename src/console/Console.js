@@ -193,6 +193,26 @@ export default function Dashboard(props) {
             });
     }
 
+    async function revertIt(prs){
+        let response = window.confirm("Are you sure you want to revert the deduction?");
+        if (response)
+            fetch(props.endpoint + '/revertReceipt', {
+                method: 'POST',
+                body: JSON.stringify({ uid: prs.uid, emailAddress: prs.emailAddress }),
+                headers: { "Content-Type": "application/json" }
+            }).then(function (response) {
+                return response.json()
+            }).then(async (val) => {
+                if (val['msg']) {
+                    // Fill leads
+                    alert("Amount reverted !!!")
+                    await fetchReceipts()
+                } else {
+                    alert("Unable to delete !!!")
+                }
+            });
+    }
+
     async function fetchReceipts() {
         fetch(props.endpoint + '/fetchAllReceipts', {
             method: 'GET',
@@ -205,7 +225,7 @@ export default function Dashboard(props) {
                 let receiptsData = []
                 setReceipts(val['data'])
                 val['data'].map(data => {
-                    receiptsData.push(<Receipts deleteIt={deleteIt} setopenContainer={setopenContainer} setData={setData} endpoint={props.endpoint} key={data['uid']} uid={data['uid']} emailAddress={data['emailAddress']} imageFile={data['imageFile']} inputRecAmt={data['inputRecAmt']} inputtxnAdd={data.inputtxnAdd} />);
+                    receiptsData.push(<Receipts deleteIt={deleteIt} revertIt={revertIt} setopenContainer={setopenContainer} setData={setData} endpoint={props.endpoint} key={data['uid']} uid={data['uid']} used={data.used} emailAddress={data['emailAddress']} imageFile={data['imageFile']} inputRecAmt={data['inputRecAmt']} inputtxnAdd={data.inputtxnAdd} />);
                 });
                 setreceiptsData(receiptsData)
             } else {
@@ -339,6 +359,7 @@ export default function Dashboard(props) {
                                         <th scope="col">Receipt</th>
                                         <th scope="col">Receipt Amount</th>
                                         <th scope="col">Description</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>

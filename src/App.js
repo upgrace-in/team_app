@@ -42,7 +42,7 @@ function App() {
       } else {
         // update the session
         localStorage.setItem("session", JSON.stringify(val['data'][0]))
-        $('.credits_div').text(val['data'][0]['credits']);
+        $('.credits_div').text((val['data'][0]['credits']).toFixed(2));
         $('.username').text(val['data'][0]['name']);
       }
     });
