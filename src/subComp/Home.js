@@ -147,7 +147,7 @@ export default function Home(props) {
             <div className="row">
                 <div className="col-md-6">
                     <div className="conw concw wc fst" style={{ background: '#835ea8' }}>
-                        <h1>${avgLoanAmt}</h1>
+                        <h1>{avgLoanAmt}</h1>
                         <span>Average Loan Amount</span>
                     </div>
                 </div>
@@ -159,7 +159,7 @@ export default function Home(props) {
                 </div>
                 <div className="col-md-6">
                     <div className="conw concw wc trd" style={{ background: '#cbbedd' }}>
-                        <h3>${totalDebits}</h3>
+                        <h3>{totalDebits}</h3>
                         <span>Total Debits</span>
                     </div>
                 </div>

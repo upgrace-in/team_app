@@ -140,7 +140,7 @@ export default function Forgot(props) {
                                                                             <>
                                                                                 <div className="col-xl-12">
                                                                                     <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap"
-                                                                                        data-name="your-email"><input onChange={(e) => setotpfield(e.target.value)} id="loginEmail" type="email" name="your-email"
+                                                                                        data-name="your-email"><input onChange={(e) => setotpfield(e.target.value)} id="loginEmail" type="number" name="your-email"
                                                                                             size="40"
                                                                                             className="wpcf7-form-control wpcf7-text"
                                                                                             aria-required="true" aria-invalid="false"

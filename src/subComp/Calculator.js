@@ -24,7 +24,7 @@ export default function Calculator(props) {
                         </div>
                         <div className="col-xl-12">
                             <div className="comment-form__input-box creditText">
-                                Credits: <b id="inputCredits" className="credits2">$0</b>
+                                Credits: <b id="inputCredits" className="credits2">0</b>
                             </div>
 
                         </div>

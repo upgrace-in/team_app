@@ -63,6 +63,7 @@ export default function Dashboard(props) {
                         leadmail={data['inputEmail']}
                         phone={data['inputPhone']}
                         leadamt={data['loanAmt']}
+                        note={data['note']}
                         leadstatus={data['offerAcceptedStatus'] === false ? "Not Yet" : "Approved"} />);
                 });
                 setleadData(leadData)
@@ -93,6 +94,7 @@ export default function Dashboard(props) {
                         transaction={data['transaction']}
                         leadname={data['fname']}
                         leadmail={data['inputEmail']}
+                        note={data['note']}
                         phone={data['inputPhone']}
                         leadamt={data['loanAmt']}
                         leadstatus={data['offerAcceptedStatus'] === false ? "Not Yet" : "Approved"} />);
@@ -324,6 +326,7 @@ export default function Dashboard(props) {
                                         <th scope="col">Lead Phone</th>
                                         <th scope="col">Loan Amount</th>
                                         <th scope="col">Credits</th>
+                                        <th scope="col">Note</th>
                                         <th scope="col">Offer Accepted</th>
                                         <th scope="col">Transaction</th>
                                         {is_loanOfficer !== true ? <th scope="col">Action</th> : ""}

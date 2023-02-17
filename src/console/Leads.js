@@ -5,8 +5,9 @@ export default function Leads(props) {
             <td>{props.leadname}</td>
             <td>{props.leadmail}</td>
             <td>{props.phone}</td>
-            <td>${props.leadamt}</td>
-            <td>${((parseFloat(props.leadamt) * 0.30) / 100).toFixed(2)}</td>
+            <td>{props.leadamt}</td>
+            <td>{((parseFloat(props.leadamt) * 0.30) / 100).toFixed(2)}</td>
+            <td>{props.note || '............'}</td>
             <td style={{ fontWeight: "700", color: props.leadstatus === 'Approved' ? 'green' : 'red' }}>{props.leadstatus}</td>
             <td style={{ fontWeight: "700", color: props.transaction === 'OPEN' ? 'green' : 'red' }}>{props.transaction}</td>
             {props.is_loanOfficer !== true ?

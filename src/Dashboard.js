@@ -166,7 +166,7 @@ export default function Dashboard(props) {
                 leadInfo.fname = fname
                 leadInfo.lname = lname
                 leadInfo.loanAmt = loanAmt
-                leadInfo.credits = credits.split('$')[1]
+                leadInfo.credits = credits
                 leadInfo.inputEmail = inputEmail
                 leadInfo.inputPhone = inputPhone
                 leadInfo.emailAddress = session['emailAddress']
@@ -242,8 +242,8 @@ export default function Dashboard(props) {
 
             <div className="sideCon">
                 <button className="thm-btn sp">Welcome: <span className="username"></span></button>
-                <button className="thm-btn sp"><a href="#" style={{ color: 'white' }}>Credits: $<span className="credits_div">0</span></a></button>
-                <button style={{ background: 'grey' }} className="thm-btn sp"><a href="#" style={{ color: 'white' }}>Pending: $<span className="pending_credits_div">{pending}</span></a></button>
+                <button className="thm-btn sp"><a href="#" style={{ color: 'white' }}>Credits: <span className="credits_div">0</span></a></button>
+                <button style={{ background: 'grey' }} className="thm-btn sp"><a href="#" style={{ color: 'white' }}>Pending: <span className="pending_credits_div">{pending}</span></a></button>
             </div>
 
             <main style={{ overflow: 'auto' }}>
@@ -358,7 +358,7 @@ export default function Dashboard(props) {
                                                                                         </div>
                                                                                         <div className="col-xl-6">
                                                                                             <div className="comment-form__input-box creditText">
-                                                                                                Credits: <b id="inputCredits" className="credits">$0</b>
+                                                                                                Credits: <b id="inputCredits" className="credits">0</b>
                                                                                                 <h6>Estimated Credits Upon Closing</h6>
                                                                                             </div>
                                                                                         </div>

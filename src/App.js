@@ -52,9 +52,9 @@ function App() {
     loanAmount.on('input', () => {
       if (loanAmount.val() !== '') {
         let credits = (parseFloat(loanAmount.val()) * process.env.REACT_APP_CALCULATOR) / 100
-        creditDiv.html('$' + credits.toFixed(2))
+        creditDiv.html(credits.toFixed(2))
       } else {
-        creditDiv.html('$0')
+        creditDiv.html('0')
       }
     })
   }

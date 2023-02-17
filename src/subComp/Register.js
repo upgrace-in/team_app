@@ -1,42 +1,6 @@
-import $ from 'jquery'
 import { useState } from 'react'
 
 export default function Register(props) {
-
-    // const registerForm = (e) => {
-    //     e.preventDefault()
-    //     let userEmail = $('#useremail').val()
-    //     let userPhone = $('#userphone').val()
-    //     let userName = $('#fname').val() + ' ' + $('#lname').val()
-    //     let password = $('#password').val()
-    //     let confirmPassword = $('#confirmPassword').val()
-    //     console.log(userEmail, userPhone, userName, password, confirmPassword);
-    //     if ((userEmail !== '') && (userPhone !== '') && (userName !== '') && (password !== '') && (confirmPassword !== '')) {
-    //         if (password === confirmPassword) {
-    //             props.setMsg("Processing...")
-    //             let body = {
-    //                 "name": userName,
-    //                 "phoneNumber": userPhone,
-    //                 "emailAddress": userEmail,
-    //                 "password": password
-    //             }
-    //             if (props.formSwitch === -1)
-    //                 body['update_it'] = true
-    //             else
-    //                 body['update_it'] = false
-
-    //             // Send to backend
-    //             registerUser(body)
-
-
-    //         } else {
-    //             props.setMsg("Password unmatched !!!")
-    //         }
-
-    //     } else {
-    //         props.setMsg("Please enter valid data !!!")
-    //     }
-    // }
 
     function registerUser(body) {
         fetch(props.endpoint + '/createuser', {
