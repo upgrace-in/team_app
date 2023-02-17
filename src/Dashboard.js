@@ -41,7 +41,7 @@ export default function Dashboard(props) {
         window.location.href = '/user/'
     } else {
         session = props.session
-        if(session.is_admin)
+        if (session.is_admin)
             window.location.href = '/console/'
     }
     $('.hide_it').hide()
@@ -257,31 +257,36 @@ export default function Dashboard(props) {
                         <img className="mx-auto text-center" src="/static/logoBlack.png" />
 
                     </a>
-                    <ul className="list-unstyled ps-0">
+                    {/* list-unstyled */}
+                    <ol className="list-unstyled ps-0">
                         <li className="mb-1">
-                            <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                            {/* <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#home-collapse" aria-expanded="true">
                                 Main
-                            </button>
+                            </button> */}
                             <div className="collapse show" id="home-collapse">
-                                <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <ol className="btn-toggle-nav  fw-normal pb-1 small">
                                     <li><a onClick={() => setformState('Home')} className="cur link-dark rounded">Home</a></li>
                                     {/* <li><a onClick={() => setformState('Logs')} className="cur link-dark rounded">Activity</a></li> */}
                                     <li><a onClick={() => setformState('Leads')} className="cur link-dark rounded">Your Leads</a></li>
                                     <li><a onClick={() => setformState('LeadForm')} className="cur link-dark rounded">Add Lead</a></li>
                                     <li><a onClick={() => setformState('Account')} className="cur link-dark rounded">Account</a></li>
                                     <li><a onClick={() => setformState('Calculator')} className="cur link-dark rounded">Calculator</a></li>
-                                </ul>
+                                    <li><a onClick={() => setformState('Upload')} className="cur link-dark rounded">Upload Reciepts</a></li>
+                                    <li><a href="/logout" className="link-dark rounded">Logout</a></li>
+                                    <li><a href="#" className="link-dark rounded">Contact Us</a></li>
+                                    <li><a href="#" className="link-dark rounded">FAQ</a></li>
+                                </ol>
                             </div>
                         </li>
-                        <li className="mb-1">
+                        {/* <li className="mb-1">
                             <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#dashboard-collapse" aria-expanded="true">
-                                Reciepts
+                                
                             </button>
                             <div className="collapse show" id="dashboard-collapse">
-                                <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a onClick={() => setformState('Upload')} className="cur link-dark rounded">Upload</a></li>
+                                <ul className="btn-toggle-nav  fw-normal pb-1 small">
+                                    <li><a onClick={() => setformState('Upload')} className="cur link-dark rounded">Upload Reciepts</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -291,14 +296,14 @@ export default function Dashboard(props) {
                                 Support
                             </button>
                             <div className="collapse show" id="orders-collapse">
-                                <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <ul className="btn-toggle-nav  fw-normal pb-1 small">
                                     <li><a href="/logout" className="link-dark rounded">Logout</a></li>
                                     <li><a href="#" className="link-dark rounded">Contact Us</a></li>
                                     <li><a href="#" className="link-dark rounded">FAQ</a></li>
                                 </ul>
                             </div>
-                        </li>
-                    </ul>
+                        </li> */}
+                    </ol>
                 </div>
 
                 <div className="sideTop" style={{ "width": 100 + "%" }}>
@@ -429,7 +434,7 @@ export default function Dashboard(props) {
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <hr style={{background: 'grey'}}/>
+                                                                                    <hr style={{ background: 'grey' }} />
                                                                                     <div className="row pd-left">
                                                                                         <label>Is your client actively looking?</label>
                                                                                         <div className="col-xl-4">
@@ -463,7 +468,7 @@ export default function Dashboard(props) {
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <hr style={{background: 'grey'}}/>
+                                                                                    <hr style={{ background: 'grey' }} />
                                                                                     <div className="row pd-left">
                                                                                         <label>Has offer been Accepted?</label>
                                                                                         <div className="col-xl-4">
@@ -540,7 +545,7 @@ export default function Dashboard(props) {
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <hr style={{background: 'grey'}}/>
+                                                                                    <hr style={{ background: 'grey' }} />
                                                                                     <div className="col-xl-12 pd-left">
                                                                                         <div className="comment-form__input-box">
                                                                                             <span className="wpcf7-form-control-wrap">

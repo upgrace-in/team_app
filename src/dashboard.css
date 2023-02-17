@@ -17,6 +17,11 @@
     overflow: auto !important;
 }
 
+/* Suidebar */
+.btn-toggle-nav a{
+    margin-left: 0% !important;
+}
+
 .positionAbs {
     position: absolute;
     top: 10%;

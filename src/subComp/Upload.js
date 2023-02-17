@@ -20,9 +20,9 @@ export default function Upload(props) {
 
         let inputRecAmt = $('#inputRecAmt').val()
         let inputtxnAdd = $('#inputtxnAdd').val()
-        let imgTag = $('#imgTag').val()
+
         try {
-            if ((inputRecAmt !== '') && (inputtxnAdd !== '') && (imgTag !== '')) {
+            if ((inputRecAmt !== '') && (inputtxnAdd !== '') && (file !== undefined)) {
                 console.log(inputRecAmt, props.credits);
                 if (inputRecAmt < props.credits) {
 
@@ -117,6 +117,7 @@ export default function Upload(props) {
                     if ((receiptfile.size / 1024) > 500)
                         alert("File Size Should be within 500 kb")
                     else {
+                        console.log(receiptfile, receiptfile.name);
                         setFile(receiptfile);
                         setFileName(receiptfile.name);
                     }
