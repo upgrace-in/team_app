@@ -195,7 +195,7 @@ export default function Dashboard(props) {
             });
     }
 
-    async function revertIt(prs){
+    async function revertIt(prs) {
         let response = window.confirm("Are you sure you want to revert the deduction?");
         if (response)
             fetch(props.endpoint + '/revertReceipt', {
@@ -264,7 +264,7 @@ export default function Dashboard(props) {
                 {receiptData}
             </div>
 
-            <main style={{height: 100+'vh'}}>
+            <main style={{ height: 100 + 'vh' }}>
                 <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%" }}>
                     <a href="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
                         style={{
@@ -277,12 +277,12 @@ export default function Dashboard(props) {
                     </a>
                     <ul className="list-unstyled ps-0">
                         <li className="mb-1">
-                            <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                            {/* <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#home-collapse" aria-expanded="true">
                                 Admin Main
-                            </button>
+                            </button> */}
                             <div className="collapse show" id="home-collapse">
-                                <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <ol className="btn-toggle-nav  fw-normal pb-1 small">
                                     <li><a onClick={() => setformState('Leads')} className="cur link-dark rounded">Leads</a></li>
                                     {is_loanOfficer !== true ?
                                         <li><a onClick={() => setformState('Receipts')} className="cur link-dark rounded">Receipts</a></li>
@@ -291,10 +291,11 @@ export default function Dashboard(props) {
                                         <li><a onClick={() => setformState('AddUsers')} className="cur link-dark rounded">Add Users</a></li>
                                         : ""}
                                     <li><a onClick={() => setformState('Account')} className="cur link-dark rounded">Account</a></li>
-                                </ul>
+                                    <li><a href="/logout" className="link-dark rounded">Logout</a></li>
+                                </ol>
                             </div>
                         </li>
-                        <li className="mb-1">
+                        {/* <li className="mb-1">
                             <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#orders-collapse" aria-expanded="false">
                                 Support
@@ -304,7 +305,7 @@ export default function Dashboard(props) {
                                     <li><a href="/logout" className="link-dark rounded">Logout</a></li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
 
