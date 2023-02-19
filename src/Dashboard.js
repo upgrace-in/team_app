@@ -247,7 +247,7 @@ export default function Dashboard(props) {
             </div>
 
             <main style={{ overflow: 'auto' }}>
-                <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%", height: 200 + 'vh' }}>
+                <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%" }}>
                     <a href="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
                         style={{
 
@@ -258,35 +258,31 @@ export default function Dashboard(props) {
 
                     </a>
                     {/* list-unstyled */}
-                    <ol className="list-unstyled ps-0">
+                    <ul className="list-unstyled ps-0">
                         <li className="mb-1">
-                            {/* <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                            <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#home-collapse" aria-expanded="true">
                                 Main
-                            </button> */}
+                            </button>
                             <div className="collapse show" id="home-collapse">
-                                <ol className="btn-toggle-nav  fw-normal pb-1 small">
+                                <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li><a onClick={() => setformState('Home')} className="cur link-dark rounded">Home</a></li>
                                     {/* <li><a onClick={() => setformState('Logs')} className="cur link-dark rounded">Activity</a></li> */}
-                                    <li><a onClick={() => setformState('Leads')} className="cur link-dark rounded">Your Leads</a></li>
                                     <li><a onClick={() => setformState('LeadForm')} className="cur link-dark rounded">Add Lead</a></li>
-                                    <li><a onClick={() => setformState('Account')} className="cur link-dark rounded">Account</a></li>
+                                    <li><a onClick={() => setformState('Leads')} className="cur link-dark rounded">Your Leads</a></li>
                                     <li><a onClick={() => setformState('Calculator')} className="cur link-dark rounded">Calculator</a></li>
-                                    <li><a onClick={() => setformState('Upload')} className="cur link-dark rounded">Upload Reciepts</a></li>
-                                    <li><a href="/logout" className="link-dark rounded">Logout</a></li>
-                                    <li><a href="#" className="link-dark rounded">Contact Us</a></li>
-                                    <li><a href="#" className="link-dark rounded">FAQ</a></li>
-                                </ol>
+                                    <li><a onClick={() => setformState('Account')} className="cur link-dark rounded">Account</a></li>
+                                </ul>
                             </div>
                         </li>
-                        {/* <li className="mb-1">
+                        <li className="mb-1">
                             <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#dashboard-collapse" aria-expanded="true">
-                                
+                                    Receipts
                             </button>
                             <div className="collapse show" id="dashboard-collapse">
-                                <ul className="btn-toggle-nav  fw-normal pb-1 small">
-                                    <li><a onClick={() => setformState('Upload')} className="cur link-dark rounded">Upload Reciepts</a></li>
+                                <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a onClick={() => setformState('Upload')} className="cur link-dark rounded">Upload</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -296,14 +292,14 @@ export default function Dashboard(props) {
                                 Support
                             </button>
                             <div className="collapse show" id="orders-collapse">
-                                <ul className="btn-toggle-nav  fw-normal pb-1 small">
+                                <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li><a href="/logout" className="link-dark rounded">Logout</a></li>
                                     <li><a href="#" className="link-dark rounded">Contact Us</a></li>
                                     <li><a href="#" className="link-dark rounded">FAQ</a></li>
                                 </ul>
                             </div>
-                        </li> */}
-                    </ol>
+                        </li>
+                    </ul>
                 </div>
 
                 <div className="sideTop" style={{ "width": 100 + "%" }}>

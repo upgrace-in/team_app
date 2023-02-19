@@ -18,9 +18,9 @@
 }
 
 /* Suidebar */
-.btn-toggle-nav a{
+/* .btn-toggle-nav a{
     margin-left: 0% !important;
-}
+} */
 
 .positionAbs {
     position: absolute;
@@ -265,13 +265,14 @@
 /* Sidebar */
 
 main {
+    height: 100%;
     display: flex;
     flex-wrap: nowrap;
     /* height: 100vh; */
     height: -webkit-fill-available;
     /* max-height: 100vh; */
     overflow-x: auto;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 .b-example-divider {

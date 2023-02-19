@@ -50,6 +50,7 @@ export default function Dashboard(props) {
                 // Fill leads
                 let leadData = []
                 setLeads(val['data'])
+                console.log(val.data);
                 val['data'].map(data => {
                     leadData.push(<Leads
                         is_loanOfficer={is_loanOfficer}
@@ -63,7 +64,7 @@ export default function Dashboard(props) {
                         leadmail={data['inputEmail']}
                         phone={data['inputPhone']}
                         leadamt={data['loanAmt']}
-                        note={data['note']}
+                        note={data['offerAcceptedStatus']['inputNotes']}
                         leadstatus={data['offerAcceptedStatus'] === false ? "Not Yet" : "Approved"} />);
                 });
                 setleadData(leadData)
@@ -86,6 +87,7 @@ export default function Dashboard(props) {
                 let leadData = []
                 setLeads(val['data'])
                 val['data'].map(data => {
+                    console.log(data)
                     leadData.push(<Leads
                         is_loanOfficer={is_loanOfficer}
                         useremailAddress={data.emailAddress}
@@ -94,7 +96,7 @@ export default function Dashboard(props) {
                         transaction={data['transaction']}
                         leadname={data['fname']}
                         leadmail={data['inputEmail']}
-                        note={data['note']}
+                        note={data['offerAcceptedStatus']['inputNotes']}
                         phone={data['inputPhone']}
                         leadamt={data['loanAmt']}
                         leadstatus={data['offerAcceptedStatus'] === false ? "Not Yet" : "Approved"} />);
@@ -243,8 +245,8 @@ export default function Dashboard(props) {
             fetchLeads()
             fetchReceipts()
         } else {
-            // fetchLoanLeads(props.session.emailAddress)
-            fetchLoanLeads("glozano@sl-lending.com")
+            fetchLoanLeads(props.session.emailAddress)
+            // fetchLoanLeads("glozano@sl-lending.com")
         }
         setTimeout(() => {
             props.checkUserExists(props.session)
@@ -264,7 +266,7 @@ export default function Dashboard(props) {
                 {receiptData}
             </div>
 
-            <main style={{ height: 100 + 'vh' }}>
+            <main>
                 <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%" }}>
                     <a href="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
                         style={{
@@ -277,12 +279,12 @@ export default function Dashboard(props) {
                     </a>
                     <ul className="list-unstyled ps-0">
                         <li className="mb-1">
-                            {/* <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                            <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#home-collapse" aria-expanded="true">
                                 Admin Main
-                            </button> */}
+                            </button>
                             <div className="collapse show" id="home-collapse">
-                                <ol className="btn-toggle-nav  fw-normal pb-1 small">
+                                <ol className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li><a onClick={() => setformState('Leads')} className="cur link-dark rounded">Leads</a></li>
                                     {is_loanOfficer !== true ?
                                         <li><a onClick={() => setformState('Receipts')} className="cur link-dark rounded">Receipts</a></li>
@@ -291,12 +293,11 @@ export default function Dashboard(props) {
                                         <li><a onClick={() => setformState('AddUsers')} className="cur link-dark rounded">Add Users</a></li>
                                         : ""}
                                     <li><a onClick={() => setformState('Account')} className="cur link-dark rounded">Account</a></li>
-                                    <li><a href="/logout" className="link-dark rounded">Logout</a></li>
                                 </ol>
                             </div>
                         </li>
-                        {/* <li className="mb-1">
-                            <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                        <li className="mb-1">
+                            <button className="btn btn-toggle list-unstyled align-items-center rounded collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#orders-collapse" aria-expanded="false">
                                 Support
                             </button>
@@ -305,7 +306,7 @@ export default function Dashboard(props) {
                                     <li><a href="/logout" className="link-dark rounded">Logout</a></li>
                                 </ul>
                             </div>
-                        </li> */}
+                        </li>
                     </ul>
                 </div>
 
@@ -337,6 +338,7 @@ export default function Dashboard(props) {
                                 <tbody id="leadData">
                                     {leadData !== '' ? leadData :
                                         <tr>
+                                            <th scope="col">...</th>
                                             <th scope="col">...</th>
                                             <th scope="col">...</th>
                                             <th scope="col">...</th>
