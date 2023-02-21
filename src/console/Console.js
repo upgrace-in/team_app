@@ -7,8 +7,11 @@ import Leads from "./Leads"
 import Search from "./Search"
 import Account from "../subComp/Account"
 import AddUsers from "./AddUsers"
+import Note from './Note'
 
 export default function Dashboard(props) {
+
+    const [note, setNote] = useState()
 
     const [formState, setformState] = useState('Leads')
 
@@ -53,6 +56,8 @@ export default function Dashboard(props) {
                 console.log(val.data);
                 val['data'].map(data => {
                     leadData.push(<Leads
+                        setopenContainer={setopenContainer}
+                        showNote={showNote}
                         is_loanOfficer={is_loanOfficer}
                         useremailAddress={data.emailAddress}
                         deleteLead={deleteLead}
@@ -89,6 +94,8 @@ export default function Dashboard(props) {
                 val['data'].map(data => {
                     console.log(data)
                     leadData.push(<Leads
+                        setopenContainer={setopenContainer}
+                        showNote={showNote}
                         is_loanOfficer={is_loanOfficer}
                         useremailAddress={data.emailAddress}
                         key={data['uid']}
@@ -155,6 +162,11 @@ export default function Dashboard(props) {
     function setData(props) {
         // View container
         setreceiptData(<Container disableBtn={disableBtn} setopenContainer={setopenContainer} updateCredits={updateCredits} endpoint={props.endpoint} uid={props.uid} emailAddress={props.emailAddress} imageFile={props.imageFile} inputRecAmt={props.inputRecAmt} inputtxnAdd={props.inputtxnAdd} />)
+    }
+
+    function showNote(props) {
+        // View notes
+        setNote(<Note note={props.note} setopenContainer={setopenContainer} />)
     }
 
     async function deleteLead(uid, emailAddress, leadMailAddress) {
@@ -265,6 +277,9 @@ export default function Dashboard(props) {
             <div className={openContainer ? "show positionAbs col-md-6" : "hide"}>
                 {receiptData}
             </div>
+            <div className={openContainer ? "show positionAbs col-md-6" : "hide"}>
+                {note}
+            </div>
 
             <main>
                 <div className="flex-shrink-0 p-3 bg-white" style={{ "width": 15 + "%" }}>
@@ -323,21 +338,22 @@ export default function Dashboard(props) {
                                 <thead>
                                     <tr>
                                         <th scope="col">UID</th>
-                                        <th scope="col">Lead Name</th>
-                                        <th scope="col">Lead Email</th>
-                                        <th scope="col">Lead Phone</th>
-                                        <th scope="col">Loan Amount</th>
+                                        <th scope="col">User</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Amount</th>
                                         <th scope="col">Credits</th>
                                         <th scope="col">Note</th>
-                                        <th scope="col">Offer Accepted</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Transaction</th>
                                         {is_loanOfficer !== true ? <th scope="col">Action</th> : ""}
-
                                     </tr>
                                 </thead>
                                 <tbody id="leadData">
                                     {leadData !== '' ? leadData :
                                         <tr>
+                                            <th scope="col">...</th>
                                             <th scope="col">...</th>
                                             <th scope="col">...</th>
                                             <th scope="col">...</th>
