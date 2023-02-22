@@ -12,6 +12,7 @@ import parse from 'html-react-parser'
 
 export default function Dashboard(props) {
 
+
     const [pending, setPending] = useState(0)
 
     const [formState, setformState] = useState('Home')
@@ -81,6 +82,9 @@ export default function Dashboard(props) {
             return response.json()
         }).then(function (val) {
             if (val['msg']) {
+                val.data.map(d => {
+                    console.log(d.name, d.userID);
+                })
                 setloanOfficers([val['data']])
             }
         });
@@ -208,7 +212,8 @@ export default function Dashboard(props) {
                         (inputclosingdate !== '') &&
                         (inputNotes !== '')) {
                         leadInfo.offerAcceptedStatus = {
-                            "selectedloanOfficer": selectedloanOfficer,
+                            "selectedloanOfficer": selectedloanOfficer.split(' ')[0],
+                            "officerUserID": selectedloanOfficer.split(' ')[1],
                             "inputAddress": inputAddress,
                             "inputNotes": inputNotes,
                             "inputclosingdate": inputclosingdate
@@ -278,7 +283,7 @@ export default function Dashboard(props) {
                         <li className="mb-1">
                             <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#dashboard-collapse" aria-expanded="true">
-                                    Receipts
+                                Receipts
                             </button>
                             <div className="collapse show" id="dashboard-collapse">
                                 <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
@@ -500,12 +505,12 @@ export default function Dashboard(props) {
                                                                                                 <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap"
                                                                                                     data-name="your-name">
                                                                                                     <select className="form-select" id="selectedloanOfficer">
-                                                                                                        <option value="0" defaultValue>Choose Loan Officer</option>
+                                                                                                        <option data-id="0" value="0" defaultValue>Choose Loan Officer</option>
                                                                                                         {
                                                                                                             // console.log(loanOfficers)
                                                                                                             loanOfficers.length !== 0 ?
                                                                                                                 loanOfficers[0].map((data, i) => {
-                                                                                                                    return <option key={i} value={data.emailAddress}>{data.name}</option>
+                                                                                                                    return <option key={i} value={data.emailAddress+" "+data.userID}>{data.name}</option>
                                                                                                                 })
                                                                                                                 : () => { return null }
                                                                                                         }
