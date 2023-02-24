@@ -82,9 +82,9 @@ export default function Dashboard(props) {
             return response.json()
         }).then(function (val) {
             if (val['msg']) {
-                val.data.map(d => {
-                    console.log(d.name, d.userID);
-                })
+                // val.data.map(d => {
+                //     console.log(d.name, d.userID);
+                // })
                 setloanOfficers([val['data']])
             }
         });
@@ -182,6 +182,9 @@ export default function Dashboard(props) {
                 // Checking client ready status 
                 let dateTime = $('#dateTime').val()
                 if ((dateTime !== '') || (clientReadyStatus === 2)) {
+
+                    dateTime = new Date(dateTime).toISOString()
+
                     if (clientReadyStatus === 1) {
                         leadInfo.clientReady = dateTime;
                     } else if (clientReadyStatus === 0) {
@@ -209,8 +212,7 @@ export default function Dashboard(props) {
                 if (offerAcceptedStatus === 1) {
                     if ((inputAddress !== '') &&
                         (selectedloanOfficer !== 0) &&
-                        (inputclosingdate !== '') &&
-                        (inputNotes !== '')) {
+                        (inputclosingdate !== '')) {
                         leadInfo.offerAcceptedStatus = {
                             "selectedloanOfficer": selectedloanOfficer.split(' ')[0],
                             "officerUserID": selectedloanOfficer.split(' ')[1],
@@ -397,8 +399,8 @@ export default function Dashboard(props) {
                                                                                             <div className="comment-form__input-box">
                                                                                                 <span className="wpcf7-form-control-wrap">
                                                                                                     <div onClick={() => { setclientReadyStatus(2); setclientReadyMsg(-1); }} className="custom-control custom-radio custom-control-inline">
-                                                                                                        <input type="radio" id="clientReadyStatus" name="clientReadyStatus" className="input2 custom-control-input" />
-                                                                                                        <label className="custom-control-label" htmlFor="clientReadyStatus">Connected with Lender</label>
+                                                                                                        <input type="radio" id="clientReadyStatus3" name="clientReadyStatus" className="input2 custom-control-input" />
+                                                                                                        <label className="custom-control-label" htmlFor="clientReadyStatus3">Connected with Lender</label>
                                                                                                     </div>
                                                                                                 </span>
                                                                                             </div>
@@ -504,13 +506,12 @@ export default function Dashboard(props) {
                                                                                             <div className="col-xl-12">
                                                                                                 <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap"
                                                                                                     data-name="your-name">
+                                                                                                    <label>Choose Loan Officer</label>
                                                                                                     <select className="form-select" id="selectedloanOfficer">
-                                                                                                        <option data-id="0" value="0" defaultValue>Choose Loan Officer</option>
                                                                                                         {
-                                                                                                            // console.log(loanOfficers)
                                                                                                             loanOfficers.length !== 0 ?
                                                                                                                 loanOfficers[0].map((data, i) => {
-                                                                                                                    return <option key={i} value={data.emailAddress+" "+data.userID}>{data.name}</option>
+                                                                                                                    return <option key={i} value={data.emailAddress + " " + data.userID}>{data.name}</option>
                                                                                                                 })
                                                                                                                 : () => { return null }
                                                                                                         }
