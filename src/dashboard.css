@@ -81,6 +81,10 @@
     cursor: pointer;
 }
 
+.conw > .row > .col-md-4 > h3{
+    margin-bottom: 5px;
+}
+
 .concw {
     background: white;
     margin: 10px;

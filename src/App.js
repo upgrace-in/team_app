@@ -42,7 +42,7 @@ function App() {
       } else {
         // update the session
         localStorage.setItem("session", JSON.stringify(val['data'][0]))
-        $('.credits_div').text((val['data'][0]['credits']).toFixed(2));
+        $('.credits_div').text(parseInt(val['data'][0]['credits']));
         $('.username').text(val['data'][0]['name']);
       }
     });
@@ -52,7 +52,7 @@ function App() {
     loanAmount.on('input', () => {
       if (loanAmount.val() !== '') {
         let credits = (parseFloat(loanAmount.val()) * process.env.REACT_APP_CALCULATOR) / 100
-        creditDiv.html(credits.toFixed(2))
+        creditDiv.html(parseInt(credits))
       } else {
         creditDiv.html('0')
       }

@@ -7,6 +7,8 @@ export default function Home(props) {
     const [totalTxn, settotalTxn] = useState(0)
     const [totalDebits, settotalDebits] = useState(0)
     const [closedTxn, setclosedTxn] = useState(0)
+    const [openTxn, setopenTxn] = useState(0)
+    const [prequalifiedTxn, setprequalifiedTxn] = useState(0)
     const ctx = document.getElementById('myChart');
 
     function renderChart(months, totalTxn, ctx) {
@@ -85,6 +87,8 @@ export default function Home(props) {
             let totaltxn = 0
             let avgcount = 0
             let closedTxn = 0
+            let openTxn = 0
+            let prequalifiedTxn = 0
             let avgLoanAmt = 0
             let totalTransactions = {}
             let dict_of_months = {
@@ -117,6 +121,10 @@ export default function Home(props) {
                     if (data.transaction === 'CLOSED') {
                         // closedTxn: closed transactions are yearly closed
                         closedTxn++
+                    }else if(data.transaction === 'OPEN'){
+                        openTxn++
+                    }else if(data.transaction === 'PREQUALIFIED'){
+                        prequalifiedTxn++
                     }
                     totaltxn++
                 }
@@ -134,6 +142,8 @@ export default function Home(props) {
                 setavgLoanAmt((parseInt(avgLoanAmt / avgcount)).toLocaleString())
 
             settotalTxn(totaltxn)
+            setopenTxn(openTxn)
+            setprequalifiedTxn(prequalifiedTxn)
             setclosedTxn(closedTxn)
         }
 
@@ -164,9 +174,21 @@ export default function Home(props) {
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <div className="conw concw wc fth" style={{ background: '#a495c7' }}>
-                        <h3>{closedTxn}</h3>
-                        <span>Closed Transactions</span>
+                    <div className="conw concw wc trd" style={{ background: '#a495c7' }}>
+                        <div className="row text-center">
+                            <div className="col-md-4">
+                                <h3>{prequalifiedTxn}</h3>
+                                <span>PreQualified</span>
+                            </div>
+                            <div className="col-md-4">
+                                <h3>{openTxn}</h3>
+                                <span>Open</span>
+                            </div>
+                            <div className="col-md-4">
+                                <h3>{closedTxn}</h3>
+                                <span>Closed</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

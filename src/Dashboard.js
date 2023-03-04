@@ -59,10 +59,10 @@ export default function Dashboard(props) {
                 let leadData = []
                 setPending(0)
                 val['data'].map(data => {
-                    let credits = ((parseFloat(data.loanAmt) * process.env.REACT_APP_CALCULATOR) / 100).toFixed(2)
+                    let credits = ((parseFloat(data.loanAmt) * process.env.REACT_APP_CALCULATOR) / 100)
                     if (data.transaction === 'OPEN')
-                        setPending(pending => (parseFloat(pending) + parseFloat(credits)).toFixed(2))
-                    leadData.push(<LeadTable key={data['uid']} uid={data['uid']} credits={credits} transaction={data['transaction']} leadname={data['fname']} mail={data['inputEmail']} phone={data['inputPhone']} leadamt={data['loanAmt']} leadstatus={data['offerAcceptedStatus'] === false ? "Not Yet" : "Approved"} />);
+                        setPending(pending => parseInt(parseFloat(pending) + parseFloat(credits)))
+                    leadData.push(<LeadTable key={data['uid']} uid={data['uid']} credits={parseInt(credits)} transaction={data['transaction']} leadname={data['fname']} mail={data['inputEmail']} phone={data['inputPhone']} leadamt={data['loanAmt']} leadstatus={data['offerAcceptedStatus'] === false ? "Not Yet" : "Approved"} />);
                 });
                 setleadDatas(val['data'])
                 setleadData(leadData)
@@ -196,14 +196,19 @@ export default function Dashboard(props) {
                     throw "Invalid dateTime";
                 }
 
+                leadInfo.transaction = "PREQUALIFIED"
+
                 // Checking client actively yes or no
                 if (clientActively === 1) {
+                    // Yes
                     leadInfo.clientActivelyLooking = true
                 } else if (clientActively === 2) {
+                    // No
                     leadInfo.clientActivelyLooking = false
                 } else if (clientActively === 0) {
+                    // Escrow
                     leadInfo.clientActivelyLooking = 'escrow'
-
+                    leadInfo.transaction = "OPEN"
                 } else {
                     throw "Input all fields !!!";
                 }
@@ -277,8 +282,19 @@ export default function Dashboard(props) {
                                     {/* <li><a onClick={() => setformState('Logs')} className="cur link-dark rounded">Activity</a></li> */}
                                     <li><a onClick={() => setformState('LeadForm')} className="cur link-dark rounded">Add Lead</a></li>
                                     <li><a onClick={() => setformState('Leads')} className="cur link-dark rounded">Your Leads</a></li>
-                                    <li><a onClick={() => setformState('Calculator')} className="cur link-dark rounded">Calculator</a></li>
+                                    {/* <li><a onClick={() => setformState('Calculator')} className="cur link-dark rounded">Calculator</a></li> */}
                                     <li><a onClick={() => setformState('Account')} className="cur link-dark rounded">Account</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li className="mb-1">
+                            <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#dashboard-collapse" aria-expanded="true">
+                                MARKETING
+                            </button>
+                            <div className="collapse show" id="dashboard-collapse">
+                                <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="listingsocial.realestateoxygen.com" className="cur link-dark rounded">Content Portal</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -600,7 +616,7 @@ export default function Dashboard(props) {
                                         <th scope="col">Lead Phone</th>
                                         <th scope="col">Loan Amount</th>
                                         <th scope="col">Credits</th>
-                                        <th scope="col">Offer Accepted</th>
+                                        <th scope="col">Milestones</th>
                                         <th scope="col">Transaction</th>
                                     </tr>
                                 </thead>
