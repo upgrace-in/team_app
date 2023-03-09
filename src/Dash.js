@@ -157,24 +157,13 @@ export default function Dashboard(props) {
 
 
         try {
-
-            if ((fname.length === 0) || isNumeric(fname)) {
-                throw "Invalid first name!";
-            }
-            if ((lname.length === 0) || isNumeric(lname)) {
-                throw "Invalid last name!";
-            }
-            if (loanAmt.length === 0) {
-                throw "Invalid loan amount!";
-            }
-            if (!(inputEmail.includes('@'))) {
-                throw "Invalid email format!";
-            }
-            if (!(inputPhone.length > 9)) {
-                throw "Invalid phone number!";
-            }
-
-            if ((clientActively !== -1) &&
+            if ((isString(fname)) &&
+                (isString(lname)) &&
+                (isNumeric(loanAmt)) &&
+                (inputEmail !== '') &&
+                (inputEmail.includes('@')) &&
+                (isNumeric(inputPhone)) &&
+                (clientActively !== -1) &&
                 (clientReadyStatus !== -1) &&
                 (offerAcceptedStatus !== -1)) {
 
@@ -192,7 +181,7 @@ export default function Dashboard(props) {
 
                 // Checking client ready status 
                 let dateTime = $('#dateTime').val()
-                if ((dateTime.length !== 0) || (clientReadyStatus === 2)) {
+                if ((dateTime !== '') || (clientReadyStatus === 2)) {
 
                     dateTime = new Date(dateTime).toISOString()
 
@@ -220,11 +209,12 @@ export default function Dashboard(props) {
                     // Escrow
                     leadInfo.clientActivelyLooking = 'escrow'
                     leadInfo.transaction = "OPEN"
+                } else {
+                    throw "Input all fields !!!";
                 }
 
                 // Checking client accepted yes or no + fields
                 if (offerAcceptedStatus === 1) {
-                    // If offer is accepted we need extra details
                     if ((inputAddress !== '') &&
                         (selectedloanOfficer !== 0) &&
                         (inputclosingdate !== '')) {
@@ -236,19 +226,20 @@ export default function Dashboard(props) {
                             "inputclosingdate": inputclosingdate
                         }
                     } else {
-                        throw "Input all fields !!!";
+                        throw "Invalid Address !!!";
                     }
                 } else if (offerAcceptedStatus === 0) {
                     leadInfo.offerAcceptedStatus = false
+                } else {
+                    throw "Input all fields !!!";
                 }
 
                 leadInfo.uid = Math.random().toString(36).slice(2)
 
-                // Submitting all infos
                 submitIt(leadInfo)
 
             } else {
-                throw "Choose one from the options !!!";
+                throw "Input all fields !!!";
             }
         } catch (e) {
             console.log(e)
@@ -469,8 +460,8 @@ export default function Dashboard(props) {
                                                                                             <div className="comment-form__input-box">
                                                                                                 <span className="wpcf7-form-control-wrap">
                                                                                                     <div onClick={() => setclientActively(0)} className="custom-control custom-radio custom-control-inline">
-                                                                                                        <input type="radio" id="customRadioInline2" name="customRadioInline3" className="input2 custom-control-input" />
-                                                                                                        <label className="custom-control-label" htmlFor="customRadioInline2">In escrow</label>
+                                                                                                        <input type="radio" id="customRadioInline3" name="customRadioInline3" className="input2 custom-control-input" />
+                                                                                                        <label className="custom-control-label" htmlFor="customRadioInline3">In escrow</label>
                                                                                                     </div>
                                                                                                 </span>
                                                                                             </div>
@@ -519,7 +510,7 @@ export default function Dashboard(props) {
                                                                                                 </span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div className={offerAcceptedStatus === 1 ? "show shownCon col-xl-12" : "hide shownCon col-xl-12"}>
+                                                                                        {/* Offer Accepted part removed <div className={offerAcceptedStatus === 1 ? "show shownCon col-xl-12" : "hide shownCon col-xl-12"}>
                                                                                             <label>Great Job!!!</label>
                                                                                             <div className="col-xl-12">
                                                                                                 <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap"
@@ -564,13 +555,13 @@ export default function Dashboard(props) {
                                                                                                         className="wpcf7-form-control wpcf7-text" placeholder="Expected Closing Date" /></span>
                                                                                                 </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        {/* Offer not accepted <div className={offerAcceptedStatus === 0 ? "show shownCon col-xl-12" : "hide shownCon col-xl-12"}>
+                                                                                        </div> */}
+                                                                                        <div className={offerAcceptedStatus === 0 ? "show shownCon col-xl-12" : "hide shownCon col-xl-12"}>
                                                                                             <div className="offerNotAccepted mx-auto text-center col-md-8">
                                                                                                 <p style={{ padding: 5 + 'px' }}>No problem. You can wait to get your offer accepted or add a credit card so not to delay your marketing campaign. After your transaction closed we will reimburse your account.</p>
                                                                                                 <button onClick={submitLeadData} type="submit" className="tb thm-btn">Add Credit Card</button>
                                                                                             </div>
-                                                                                        </div> */}
+                                                                                        </div>
                                                                                     </div>
                                                                                     <hr style={{ background: 'grey' }} />
                                                                                     <div className="col-xl-12 pd-left">
