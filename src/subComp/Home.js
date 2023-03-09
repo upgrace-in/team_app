@@ -176,11 +176,11 @@ export default function Home(props) {
                 <div className="col-md-6">
                     <div className="conw concw wc trd" style={{ background: '#a495c7' }}>
                         <div className="row text-center">
-                            <div className="col-md-4">
+                            <div className="cm col-md-4">
                                 <h3>{prequalifiedTxn}</h3>
                                 <span>PreQualified</span>
                             </div>
-                            <div className="col-md-4">
+                            <div className="cm col-md-4">
                                 <h3>{openTxn}</h3>
                                 <span>Open</span>
                             </div>

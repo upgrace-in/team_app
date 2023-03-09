@@ -294,7 +294,7 @@ export default function Dashboard(props) {
                             </button>
                             <div className="collapse show" id="dashboard-collapse">
                                 <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="listingsocial.realestateoxygen.com" className="cur link-dark rounded">Content Portal</a></li>
+                                    <li><a target="_blank" href="https://listingsocial.realestateoxygen.com" className="cur link-dark rounded">Content Portal</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -510,7 +510,7 @@ export default function Dashboard(props) {
                                                                                                 </span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div className={offerAcceptedStatus === 1 ? "show shownCon col-xl-12" : "hide shownCon col-xl-12"}>
+                                                                                        {/* Offer Accepted part removed <div className={offerAcceptedStatus === 1 ? "show shownCon col-xl-12" : "hide shownCon col-xl-12"}>
                                                                                             <label>Great Job!!!</label>
                                                                                             <div className="col-xl-12">
                                                                                                 <div className="comment-form__input-box"><span className="wpcf7-form-control-wrap"
@@ -555,7 +555,7 @@ export default function Dashboard(props) {
                                                                                                         className="wpcf7-form-control wpcf7-text" placeholder="Expected Closing Date" /></span>
                                                                                                 </div>
                                                                                             </div>
-                                                                                        </div>
+                                                                                        </div> */}
                                                                                         <div className={offerAcceptedStatus === 0 ? "show shownCon col-xl-12" : "hide shownCon col-xl-12"}>
                                                                                             <div className="offerNotAccepted mx-auto text-center col-md-8">
                                                                                                 <p style={{ padding: 5 + 'px' }}>No problem. You can wait to get your offer accepted or add a credit card so not to delay your marketing campaign. After your transaction closed we will reimburse your account.</p>
