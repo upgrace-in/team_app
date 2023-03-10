@@ -8,7 +8,7 @@ export default function LeadTable(props) {
             <td>{props.leadamt}</td>
             <td>{props.credits}</td>
             <td style={{ fontWeight: "700", color: props.leadstatus === 'Approved' ? 'green' : 'red' }}>{props.leadstatus}</td>
-            <td style={{ fontWeight: "700", color: props.transaction === 'OPEN' ? 'green' : 'red' }}>{props.transaction === 'prequalified' ? "OPEN" : props.transaction}</td>
+            <td style={{ fontWeight: "700", color: props.transaction === 'CLOSED' ? 'red' : 'green' }}>{props.transaction === 'PREQUALIFIED' ? "OPEN" : props.transaction}</td>
         </tr>
     )
 }

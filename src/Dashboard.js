@@ -303,7 +303,7 @@ export default function Dashboard(props) {
                             </button>
                             <div className="collapse show" id="dashboard-collapse">
                                 <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a target="_blank" href="https://listingsocial.realestateoxygen.com" className="cur link-dark rounded">Content Portal</a></li>
+                                    <li><a target="_blank" href="https://social.realestateoxygen.com/contents" className="cur link-dark rounded">Content Portal</a></li>
                                 </ul>
                             </div>
                         </li>
